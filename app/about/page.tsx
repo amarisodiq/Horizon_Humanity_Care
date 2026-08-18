@@ -74,7 +74,7 @@ export default function AboutPage() {
           PAGE HERO
       ========================================= */}
 
-      <section className="inner-hero">
+      <section className="inner-hero about-hero">
         <div className="inner-hero-overlay" />
 
         <div className="container inner-hero-content">
@@ -95,9 +95,9 @@ export default function AboutPage() {
 
           <ScrollReveal delay={200}>
             <p>
-              We exist to support retired security personnel and their
-              families through practical assistance, empowerment, advocacy
-              and strategic partnerships.
+              We exist to support retired security personnel and their families
+              through practical assistance, empowerment, advocacy and strategic
+              partnerships.
             </p>
           </ScrollReveal>
         </div>
@@ -136,8 +136,8 @@ export default function AboutPage() {
 
               <p>
                 We therefore seek to provide practical support while helping
-                retirees maintain independence, dignity and the opportunity
-                to continue contributing meaningfully to society.
+                retirees maintain independence, dignity and the opportunity to
+                continue contributing meaningfully to society.
               </p>
 
               <Link href="/programs" className="text-link">
@@ -155,14 +155,17 @@ export default function AboutPage() {
 
       <ScrollReveal direction="left">
         <section className="about-story">
-          <div className="about-story-image" />
+          <div className="about-story-image">
+            <img
+              src="/images/about-story.jpg"
+              alt="Older retired personnel sharing a community conversation"
+            />
+          </div>
 
           <div className="about-story-content">
             <span className="kicker">OUR STORY</span>
 
-            <h2>
-              Born from witnessing the realities of life after service.
-            </h2>
+            <h2>Born from witnessing the realities of life after service.</h2>
 
             <p>
               The idea behind Horizon Humanity Care grew from firsthand
@@ -177,9 +180,9 @@ export default function AboutPage() {
             </p>
 
             <p>
-              Horizon was created around a simple conviction: service should
-              be remembered, retirement should be dignified, and support
-              should strengthen independence rather than replace it.
+              Horizon was created around a simple conviction: service should be
+              remembered, retirement should be dignified, and support should
+              strengthen independence rather than replace it.
             </p>
 
             <Link href="/programs" className="text-link">
@@ -233,11 +236,10 @@ export default function AboutPage() {
                 <Target size={34} />
 
                 <h3>
-                  To empower retired security personnel through welfare
-                  support, economic empowerment, healthcare access, advocacy,
-                  skills development and strategic partnerships that improve
-                  quality of life and strengthen continued contribution to
-                  society.
+                  To empower retired security personnel through welfare support,
+                  economic empowerment, healthcare access, advocacy, skills
+                  development and strategic partnerships that improve quality of
+                  life and strengthen continued contribution to society.
                 </h3>
               </article>
             </ScrollReveal>
@@ -258,9 +260,8 @@ export default function AboutPage() {
               <h2>The principles behind our work.</h2>
 
               <p>
-                Our values shape how Horizon Humanity Care serves
-                beneficiaries, works with partners and manages its
-                responsibilities.
+                Our values shape how Horizon Humanity Care serves beneficiaries,
+                works with partners and manages its responsibilities.
               </p>
             </div>
           </ScrollReveal>
@@ -270,10 +271,7 @@ export default function AboutPage() {
               const Icon = value.icon;
 
               return (
-                <ScrollReveal
-                  key={value.title}
-                  delay={index * 80}
-                >
+                <ScrollReveal key={value.title} delay={index * 80}>
                   <article className="value-card">
                     <div className="value-number">
                       {String(index + 1).padStart(2, "0")}
@@ -329,9 +327,7 @@ export default function AboutPage() {
                 direction="right"
               >
                 <div className="objective-row">
-                  <span>
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
+                  <span>{String(index + 1).padStart(2, "0")}</span>
 
                   <CheckCircle2 size={19} />
 
@@ -361,9 +357,9 @@ export default function AboutPage() {
             <div>
               <p>
                 Horizon Humanity Care is designed to operate through a
-                governance structure that supports responsible decision
-                making, programme delivery, financial accountability,
-                partnerships and monitoring and evaluation.
+                governance structure that supports responsible decision making,
+                programme delivery, financial accountability, partnerships and
+                monitoring and evaluation.
               </p>
 
               <div className="governance-list">
@@ -374,16 +370,12 @@ export default function AboutPage() {
 
                 <div>
                   <strong>Executive Management</strong>
-                  <span>
-                    Organizational leadership and implementation
-                  </span>
+                  <span>Organizational leadership and implementation</span>
                 </div>
 
                 <div>
                   <strong>Thematic Committees</strong>
-                  <span>
-                    Programme, finance and partnership oversight
-                  </span>
+                  <span>Programme, finance and partnership oversight</span>
                 </div>
 
                 <div>
@@ -408,14 +400,12 @@ export default function AboutPage() {
             <div>
               <span className="kicker">WORK WITH US</span>
 
-              <h2>
-                Help build a more dignified future after service.
-              </h2>
+              <h2>Help build a more dignified future after service.</h2>
 
               <p>
-                Whether through partnership, expertise, resources or
-                advocacy, there is a role for institutions and individuals
-                who share this commitment.
+                Whether through partnership, expertise, resources or advocacy,
+                there is a role for institutions and individuals who share this
+                commitment.
               </p>
             </div>
 
