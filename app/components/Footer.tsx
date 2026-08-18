@@ -4,8 +4,10 @@ import {
   Mail,
   Phone,
   MapPin,
-  Linkedin,
+  Music2,
   Facebook,
+  Twitter,
+  Linkedin,
   Instagram,
 } from "lucide-react";
 
@@ -34,15 +36,10 @@ export default function Footer() {
       <div className="container footer-main">
         <div className="footer-brand">
           <Link href="/" className="footer-logo">
-            <img
-              src="/images/logo.png"
-              alt="Horizon Humanity Care"
-            />
+            <img src="/images/logo2.png" alt="Horizon Humanity Care" />
           </Link>
 
-          <p>
-            Honouring those who served. Empowering those who retired.
-          </p>
+          <p>Honouring those who served. Empowering those who retired.</p>
 
           <p className="footer-description">
             Horizon Humanity Care works to support retired security personnel
@@ -50,34 +47,39 @@ export default function Footer() {
             capacity building, advocacy and strategic partnerships.
           </p>
 
+          {/* Social Media */}
           <div className="footer-socials">
             <a
-              href="#"
-              aria-label="LinkedIn"
+              href="https://www.tiktok.com/@horizon.humanityc"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="TikTok"
             >
-              <Linkedin size={16} />
+              <Music2 size={17} />
             </a>
 
             <a
-              href="#"
+              href="https://www.facebook.com/"
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label="Facebook"
             >
-              <Facebook size={16} />
+              <Facebook size={17} />
             </a>
 
             <a
-              href="#"
-              aria-label="Instagram"
+              href="https://x.com/horizonHHC"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="X"
             >
-              <Instagram size={16} />
+              <Twitter size={17} />
             </a>
           </div>
         </div>
 
         <div className="footer-column">
-          <span className="footer-heading">
-            Organisation
-          </span>
+          <span className="footer-heading">Organisation</span>
 
           <nav>
             {footerLinks.organisation.map((link) => (
@@ -90,9 +92,7 @@ export default function Footer() {
         </div>
 
         <div className="footer-column">
-          <span className="footer-heading">
-            Engage
-          </span>
+          <span className="footer-heading">Engage</span>
 
           <nav>
             {footerLinks.programmes.map((link) => (
@@ -105,23 +105,29 @@ export default function Footer() {
         </div>
 
         <div className="footer-column footer-contact">
-          <span className="footer-heading">
-            Contact
-          </span>
+          <span className="footer-heading">Contact</span>
 
-          <a href="mailto:info@horizonhumanitycare.org">
+          <a href="mailto:hhc.humanitycare@gmail.com">
             <Mail size={16} />
             <span>
               <small>Email</small>
-              info@horizonhumanitycare.org
+              hhc.humanitycare@gmail.com
             </span>
           </a>
 
-          <a href="tel:+2340000000000">
+          <a href="tel:+2349165794936">
             <Phone size={16} />
             <span>
               <small>Telephone</small>
-              +234 000 000 0000
+              +234 916 579 4936
+            </span>
+          </a>
+
+          <a href="tel:+2349033169558">
+            <Phone size={16} />
+            <span>
+              <small>Telephone</small>
+              +234 903 316 9558
             </span>
           </a>
 
@@ -129,7 +135,7 @@ export default function Footer() {
             <MapPin size={16} />
             <span>
               <small>Location</small>
-              Nigeria
+              No 11 Olumeni street Forces Avenue old GRA, Port Harcourt, Rivers State, Nigeria
             </span>
           </div>
         </div>
@@ -142,15 +148,10 @@ export default function Footer() {
           <div>
             <span>PARTNER WITH PURPOSE</span>
 
-            <h2>
-              Help build a more dignified future after service.
-            </h2>
+            <h2>Help build a more dignified future after service.</h2>
           </div>
 
-          <Link
-            href="/partnerships"
-            className="footer-cta-button"
-          >
+          <Link href="/partnerships" className="footer-cta-button">
             Explore Partnerships
             <ArrowUpRight size={17} />
           </Link>
@@ -161,18 +162,12 @@ export default function Footer() {
 
       <div className="footer-bottom">
         <div className="container footer-bottom-inner">
-          <p>
-            © {year} Horizon Humanity Care. All rights reserved.
-          </p>
+          <p>© {year} Horizon Humanity Care. All rights reserved.</p>
 
           <div>
-            <Link href="/privacy">
-              Privacy Policy
-            </Link>
+            <Link href="/privacy">Privacy Policy</Link>
 
-            <Link href="/terms">
-              Terms & Conditions
-            </Link>
+            <Link href="/terms">Terms & Conditions</Link>
           </div>
         </div>
       </div>

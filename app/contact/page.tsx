@@ -9,6 +9,9 @@ import {
   Send,
   Building2,
   Handshake,
+  Music2,
+  Facebook,
+  Twitter,
 } from "lucide-react";
 
 const contactReasons = [
@@ -26,6 +29,27 @@ const contactReasons = [
     icon: Send,
     title: "General Enquiries",
     text: "Ask a question or request more information about our organisation and work.",
+  },
+];
+
+const socialLinks = [
+  {
+    name: "TikTok",
+    handle: "@horizon.humanityc",
+    href: "https://www.tiktok.com/@horizon.humanityc",
+    icon: Music2,
+  },
+  {
+    name: "Facebook",
+    handle: "Horizon Humanity Care Foundation",
+    href: "#",
+    icon: Facebook,
+  },
+  {
+    name: "X",
+    handle: "@horizonHHC",
+    href: "https://x.com/horizonHHC",
+    icon: Twitter,
   },
 ];
 
@@ -81,9 +105,9 @@ export default function ContactPage() {
             <div className="contact-intro-copy">
               <p>
                 Horizon Humanity Care is interested in building constructive
-                relationships with institutions, organisations,
-                professionals, communities and individuals who share our
-                commitment to dignity after service.
+                relationships with institutions, organisations, professionals,
+                communities and individuals who share our commitment to dignity
+                after service.
               </p>
 
               <p>
@@ -105,38 +129,55 @@ export default function ContactPage() {
             <div className="contact-details">
               <span className="kicker">CONTACT INFORMATION</span>
 
-              <h2>
-                We&apos;re here to listen.
-              </h2>
+              <h2>We&apos;re here to listen.</h2>
 
               <p className="contact-details-intro">
-                For partnership enquiries, institutional engagement,
-                programme information and general correspondence, please use
-                the details below.
+                For partnership enquiries, institutional engagement, programme
+                information and general correspondence, please use the details
+                below.
               </p>
 
               <div className="contact-detail-list">
-                <a href="mailto:info@horizonhumanitycare.org">
+                {/* EMAIL */}
+
+                <a href="mailto:hhc.humanitycare@gmail.com">
                   <span className="contact-detail-icon">
                     <Mail size={20} />
                   </span>
 
                   <span>
                     <small>Email</small>
-                    info@horizonhumanitycare.org
+                    hhc.humanitycare@gmail.com
                   </span>
                 </a>
 
-                <a href="tel:+2340000000000">
+                {/* PHONE 1 */}
+
+                <a href="tel:09165794936">
                   <span className="contact-detail-icon">
                     <Phone size={20} />
                   </span>
 
                   <span>
                     <small>Telephone</small>
-                    +234 000 000 0000
+                    09165794936
                   </span>
                 </a>
+
+                {/* PHONE 2 */}
+
+                <a href="tel:09033169558">
+                  <span className="contact-detail-icon">
+                    <Phone size={20} />
+                  </span>
+
+                  <span>
+                    <small>Telephone</small>
+                    09033169558
+                  </span>
+                </a>
+
+                {/* OFFICE */}
 
                 <div>
                   <span className="contact-detail-icon">
@@ -145,9 +186,12 @@ export default function ContactPage() {
 
                   <span>
                     <small>Office</small>
-                    Nigeria
+                    No 11 Olumeni Street, Forces Avenue, Old GRA,
+                    Port Harcourt, Rivers State, Nigeria
                   </span>
                 </div>
+
+                {/* OFFICE HOURS */}
 
                 <div>
                   <span className="contact-detail-icon">
@@ -161,15 +205,39 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              <div className="contact-note">
-                <strong>Important</strong>
+              {/* SOCIAL MEDIA */}
 
-                <p>
-                  Please replace the placeholder contact details above with
-                  Horizon Humanity Care&apos;s official telephone number,
-                  email address and office location before publishing the
-                  website.
-                </p>
+              <div className="contact-social">
+                <span className="kicker">FOLLOW HORIZON</span>
+
+                <div className="contact-social-list">
+                  {socialLinks.map((social) => {
+                    const Icon = social.icon;
+
+                    return (
+                      <a
+                        key={social.name}
+                        href={social.href}
+                        target={social.href !== "#" ? "_blank" : undefined}
+                        rel={
+                          social.href !== "#"
+                            ? "noopener noreferrer"
+                            : undefined
+                        }
+                        aria-label={`${social.name} - ${social.handle}`}
+                      >
+                        <span className="contact-social-icon">
+                          <Icon size={18} />
+                        </span>
+
+                        <span>
+                          <small>{social.name}</small>
+                          {social.handle}
+                        </span>
+                      </a>
+                    );
+                  })}
+                </div>
               </div>
             </div>
           </ScrollReveal>
@@ -179,13 +247,9 @@ export default function ContactPage() {
           <ScrollReveal direction="right" delay={120}>
             <div className="contact-form-card">
               <div className="contact-form-heading">
-                <span className="kicker">
-                  SEND AN ENQUIRY
-                </span>
+                <span className="kicker">SEND AN ENQUIRY</span>
 
-                <h2>
-                  How can we help?
-                </h2>
+                <h2>How can we help?</h2>
 
                 <p>
                   Tell us a little about your enquiry and we&apos;ll know where
@@ -197,6 +261,7 @@ export default function ContactPage() {
                 <div className="form-row">
                   <label>
                     <span>Full Name</span>
+
                     <input
                       type="text"
                       name="name"
@@ -206,6 +271,7 @@ export default function ContactPage() {
 
                   <label>
                     <span>Organisation</span>
+
                     <input
                       type="text"
                       name="organisation"
@@ -217,6 +283,7 @@ export default function ContactPage() {
                 <div className="form-row">
                   <label>
                     <span>Email Address</span>
+
                     <input
                       type="email"
                       name="email"
@@ -226,6 +293,7 @@ export default function ContactPage() {
 
                   <label>
                     <span>Telephone</span>
+
                     <input
                       type="tel"
                       name="phone"
@@ -238,9 +306,7 @@ export default function ContactPage() {
                   <span>Enquiry Type</span>
 
                   <select name="enquiry">
-                    <option value="">
-                      Select an option
-                    </option>
+                    <option value="">Select an option</option>
 
                     <option value="partnership">
                       Partnership
@@ -293,9 +359,7 @@ export default function ContactPage() {
         <div className="container">
           <ScrollReveal>
             <div className="center-heading">
-              <span className="kicker">
-                WHY CONTACT US
-              </span>
+              <span className="kicker">WHY CONTACT US</span>
 
               <h2>
                 There are many ways to begin working with Horizon.
@@ -314,7 +378,10 @@ export default function ContactPage() {
                 >
                   <article className="contact-reason-card">
                     <div className="contact-reason-icon">
-                      <Icon size={25} strokeWidth={1.5} />
+                      <Icon
+                        size={25}
+                        strokeWidth={1.5}
+                      />
                     </div>
 
                     <h3>{reason.title}</h3>
@@ -340,8 +407,10 @@ export default function ContactPage() {
           <div className="contact-location-map">
             <div className="map-placeholder">
               <MapPin size={30} />
+
               <span>Horizon Humanity Care</span>
-              <small>Nigeria</small>
+
+              <small>Port Harcourt, Rivers State</small>
             </div>
           </div>
 
@@ -362,7 +431,11 @@ export default function ContactPage() {
 
             <div className="location-detail">
               <MapPin size={19} />
-              <span>Nigeria</span>
+
+              <span>
+                No 11 Olumeni Street, Forces Avenue, Old GRA,
+                Port Harcourt, Rivers State, Nigeria
+              </span>
             </div>
 
             <Link
