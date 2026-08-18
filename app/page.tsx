@@ -119,8 +119,8 @@ export default function Home() {
   return (
     <main>
       {/* =========================================
-    HERO
-========================================= */}
+      HERO
+      ========================================= */}
 
       <section className="hero" id="home">
         <div className="hero-image" />
@@ -191,21 +191,36 @@ export default function Home() {
       </section>
 
       {/* =========================================
-          INTRODUCTION
+      WHY HORIZON
       ========================================= */}
 
       <section className="intro section">
-        <div className="container split">
+        <div className="container why-horizon-grid">
+          {/* IMAGE */}
           <ScrollReveal direction="left">
-            <div>
-              <span className="kicker">WHY HORIZON</span>
+            <div className="why-horizon-image">
+              <img
+                src="/images/why-horizon.jpg"
+                alt="Horizon Humanity Care community support and engagement"
+              />
 
-              <h2>A lifetime of service deserves a future of dignity.</h2>
+              <div className="why-horizon-image-caption">
+                <span>HORIZON HUMANITY CARE</span>
+                <strong>Service. Dignity. Purpose.</strong>
+              </div>
             </div>
           </ScrollReveal>
 
+          {/* CONTENT */}
           <ScrollReveal direction="right" delay={120}>
-            <div className="large-copy">
+            <div className="why-horizon-content">
+              <span className="kicker">WHY HORIZON</span>
+
+              <h2>
+                A lifetime of service deserves
+                <em> a future of dignity.</em>
+              </h2>
+
               <p>
                 Retirement can bring changes in financial stability, healthcare
                 access, social connection, purpose and opportunity. Horizon
@@ -219,6 +234,19 @@ export default function Home() {
                 support should never erase independence — it should strengthen
                 it.
               </p>
+
+              <div className="why-horizon-highlight">
+                <ShieldCheck size={21} />
+
+                <div>
+                  <strong>Dignity remains at the centre.</strong>
+
+                  <span>
+                    Our approach is designed to support independence, wellbeing
+                    and continued purpose after service.
+                  </span>
+                </div>
+              </div>
 
               <Link href="/about" className="text-link">
                 Read Our Story
@@ -270,24 +298,36 @@ export default function Home() {
       </section>
 
       {/* =========================================
-          PROGRAMS
+      PROGRAMS
       ========================================= */}
 
       <section className="section programs" id="programs">
         <div className="container">
           <ScrollReveal>
-            <div className="section-heading">
+            <div className="section-heading programs-heading">
               <div>
                 <span className="kicker">OUR AREAS OF WORK</span>
 
-                <h2>Building a stronger future after service.</h2>
+                <h2>
+                  Building a stronger future
+                  <br />
+                  <em>after service.</em>
+                </h2>
               </div>
 
-              <p>
-                Our work combines practical support, empowerment, advocacy and
-                long-term partnerships to address the realities faced by retired
-                security personnel and their families.
-              </p>
+              <div className="programs-heading-copy">
+                <p>
+                  Our programmes respond to the practical realities of
+                  retirement, combining welfare, healthcare, economic
+                  empowerment, advocacy and skills development with a strong
+                  focus on dignity and independence.
+                </p>
+
+                <Link href="/programs" className="text-link">
+                  Explore our approach
+                  <ArrowRight size={16} />
+                </Link>
+              </div>
             </div>
           </ScrollReveal>
 
@@ -296,21 +336,37 @@ export default function Home() {
               const Icon = program.icon;
 
               return (
-                <ScrollReveal key={program.number} delay={index * 70}>
-                  <Link href="/programs" className="program-row">
+                <ScrollReveal key={program.number} delay={index * 80}>
+                  <Link
+                    href="/programs"
+                    className={`program-card ${
+                      index % 2 !== 0 ? "program-card-reverse" : ""
+                    }`}
+                  >
                     <span className="program-number">{program.number}</span>
 
                     <span className="program-icon">
-                      <Icon size={24} strokeWidth={1.5} />
+                      <Icon size={27} strokeWidth={1.4} />
                     </span>
 
                     <span className="program-info">
+                      <span className="program-label">
+                        PROGRAMME {program.number}
+                      </span>
+
                       <h3>{program.title}</h3>
 
                       <p>{program.text}</p>
+
+                      <span className="program-learn">
+                        Learn more
+                        <ArrowRight size={15} />
+                      </span>
                     </span>
 
-                    <ChevronRight className="program-arrow" />
+                    <span className="program-card-arrow">
+                      <ChevronRight size={22} />
+                    </span>
                   </Link>
                 </ScrollReveal>
               );
@@ -318,7 +374,16 @@ export default function Home() {
           </div>
 
           <ScrollReveal delay={150}>
-            <div className="center-action">
+            <div className="programs-footer">
+              <div>
+                <span className="programs-footer-line" />
+
+                <p>
+                  Practical support. Sustainable opportunity.
+                  <strong> Lasting dignity.</strong>
+                </p>
+              </div>
+
               <Link href="/programs" className="button button-navy">
                 View All Programs
                 <ArrowRight size={17} />
@@ -329,22 +394,47 @@ export default function Home() {
       </section>
 
       {/* =========================================
-          WHO WE SERVE
-      ========================================= */}
+    WHO WE SERVE
+========================================= */}
 
       <section className="serve section" id="who-we-serve">
         <div className="container">
           <div className="serve-grid">
+            {/* IMAGE */}
             <ScrollReveal direction="left">
-              <div>
+              <div className="serve-image">
+                <img
+                  src="/images/who-we-serve.jpg"
+                  alt="Community engagement with retired personnel and families"
+                />
+
+                <div className="serve-image-overlay">
+                  <span>WHO WE SERVE</span>
+                  <strong>Honouring those who served.</strong>
+                </div>
+              </div>
+            </ScrollReveal>
+
+            {/* CONTENT */}
+            <ScrollReveal direction="right" delay={120}>
+              <div className="serve-content">
                 <span className="kicker light-kicker">WHO WE SERVE</span>
 
-                <h2>Serving across Nigeria&apos;s security community.</h2>
+                <h2>
+                  Serving across Nigeria&apos;s
+                  <em> security community.</em>
+                </h2>
 
                 <p>
                   Our focus extends across the security institutions whose
                   personnel have dedicated their working lives to protecting the
                   nation.
+                </p>
+
+                <p>
+                  We also recognise the important role played by spouses,
+                  widows, dependents and families whose lives are connected to
+                  that service.
                 </p>
 
                 <Link href="/who-we-serve" className="light-link">
@@ -353,18 +443,22 @@ export default function Home() {
                 </Link>
               </div>
             </ScrollReveal>
+          </div>
 
-            <div className="beneficiary-list">
-              {beneficiaries.map((item, index) => (
-                <ScrollReveal key={item} direction="right" delay={index * 70}>
-                  <div>
-                    <span>{String(index + 1).padStart(2, "0")}</span>
+          {/* BENEFICIARIES */}
 
-                    <strong>{item}</strong>
-                  </div>
-                </ScrollReveal>
-              ))}
-            </div>
+          <div className="beneficiary-list">
+            {beneficiaries.map((item, index) => (
+              <ScrollReveal key={item} direction="up" delay={index * 60}>
+                <div>
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+
+                  <strong>{item}</strong>
+
+                  <ChevronRight size={17} />
+                </div>
+              </ScrollReveal>
+            ))}
           </div>
         </div>
       </section>
