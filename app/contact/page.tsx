@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { FormEvent, useState } from "react";
 import ScrollReveal from "../components/ScrollReveal";
 import {
   ArrowRight,
@@ -54,6 +57,54 @@ const socialLinks = [
 ];
 
 export default function ContactPage() {
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+
+    const name = String(formData.get("name") || "");
+    const organisation = String(formData.get("organisation") || "");
+    const email = String(formData.get("email") || "");
+    const phone = String(formData.get("phone") || "");
+    const enquiry = String(formData.get("enquiry") || "");
+    const message = String(formData.get("message") || "");
+
+    const subject = `Horizon Humanity Care Enquiry - ${enquiry}`;
+
+    const body = `
+Dear Horizon Humanity Care,
+
+A new enquiry has been submitted through the Horizon Humanity Care website.
+
+CONTACT DETAILS
+------------------------------
+Full Name: ${name}
+Organisation: ${organisation}
+Email: ${email}
+Telephone: ${phone}
+Enquiry Type: ${enquiry}
+
+MESSAGE
+------------------------------
+${message}
+
+------------------------------
+Submitted through the Horizon Humanity Care website.
+`;
+
+    const mailto = `mailto:hhc.humanitycare@gmail.com?subject=${encodeURIComponent(
+      subject
+    )}&body=${encodeURIComponent(body)}`;
+
+    window.location.href = mailto;
+
+    setSubmitted(true);
+    form.reset();
+  };
+
   return (
     <main>
       {/* HERO */}
@@ -138,8 +189,6 @@ export default function ContactPage() {
               </p>
 
               <div className="contact-detail-list">
-                {/* EMAIL */}
-
                 <a href="mailto:hhc.humanitycare@gmail.com">
                   <span className="contact-detail-icon">
                     <Mail size={20} />
@@ -150,8 +199,6 @@ export default function ContactPage() {
                     hhc.humanitycare@gmail.com
                   </span>
                 </a>
-
-                {/* PHONE 1 */}
 
                 <a href="tel:09165794936">
                   <span className="contact-detail-icon">
@@ -164,8 +211,6 @@ export default function ContactPage() {
                   </span>
                 </a>
 
-                {/* PHONE 2 */}
-
                 <a href="tel:09033169558">
                   <span className="contact-detail-icon">
                     <Phone size={20} />
@@ -176,8 +221,6 @@ export default function ContactPage() {
                     09033169558
                   </span>
                 </a>
-
-                {/* OFFICE */}
 
                 <div>
                   <span className="contact-detail-icon">
@@ -190,8 +233,6 @@ export default function ContactPage() {
                     Port Harcourt, Rivers State, Nigeria
                   </span>
                 </div>
-
-                {/* OFFICE HOURS */}
 
                 <div>
                   <span className="contact-detail-icon">
@@ -218,7 +259,9 @@ export default function ContactPage() {
                       <a
                         key={social.name}
                         href={social.href}
-                        target={social.href !== "#" ? "_blank" : undefined}
+                        target={
+                          social.href !== "#" ? "_blank" : undefined
+                        }
                         rel={
                           social.href !== "#"
                             ? "noopener noreferrer"
@@ -257,7 +300,21 @@ export default function ContactPage() {
                 </p>
               </div>
 
-              <form className="contact-form">
+              {submitted && (
+                <div className="form-success">
+                  <strong>Thank you for contacting Horizon Humanity Care.</strong>
+
+                  <p>
+                    Your enquiry has been prepared. Your email application
+                    should now open so you can send it to our team.
+                  </p>
+                </div>
+              )}
+
+              <form
+                className="contact-form"
+                onSubmit={handleSubmit}
+              >
                 <div className="form-row">
                   <label>
                     <span>Full Name</span>
@@ -266,6 +323,7 @@ export default function ContactPage() {
                       type="text"
                       name="name"
                       placeholder="Your full name"
+                      required
                     />
                   </label>
 
@@ -288,6 +346,7 @@ export default function ContactPage() {
                       type="email"
                       name="email"
                       placeholder="you@example.com"
+                      required
                     />
                   </label>
 
@@ -297,7 +356,7 @@ export default function ContactPage() {
                     <input
                       type="tel"
                       name="phone"
-                      placeholder="+234"
+                      placeholder="Your telephone number"
                     />
                   </label>
                 </div>
@@ -305,26 +364,32 @@ export default function ContactPage() {
                 <label>
                   <span>Enquiry Type</span>
 
-                  <select name="enquiry">
-                    <option value="">Select an option</option>
+                  <select
+                    name="enquiry"
+                    required
+                    defaultValue=""
+                  >
+                    <option value="" disabled>
+                      Select an option
+                    </option>
 
-                    <option value="partnership">
+                    <option value="Partnership">
                       Partnership
                     </option>
 
-                    <option value="programme">
+                    <option value="Programme Enquiry">
                       Programme Enquiry
                     </option>
 
-                    <option value="volunteer">
+                    <option value="Volunteer / Expertise">
                       Volunteer / Expertise
                     </option>
 
-                    <option value="institutional">
+                    <option value="Institutional Engagement">
                       Institutional Engagement
                     </option>
 
-                    <option value="general">
+                    <option value="General Enquiry">
                       General Enquiry
                     </option>
                   </select>
@@ -337,6 +402,7 @@ export default function ContactPage() {
                     name="message"
                     rows={6}
                     placeholder="Tell us how we can help..."
+                    required
                   />
                 </label>
 

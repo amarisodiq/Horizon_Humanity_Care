@@ -119,11 +119,16 @@ export default function Home() {
   return (
     <main>
       {/* =========================================
-          HERO
-      ========================================= */}
+    HERO
+========================================= */}
 
       <section className="hero" id="home">
+        <div className="hero-image" />
+
         <div className="hero-overlay" />
+
+        <div className="hero-glow hero-glow-one" />
+        <div className="hero-glow hero-glow-two" />
 
         <div className="container hero-content">
           <div className="hero-copy">
@@ -144,10 +149,9 @@ export default function Home() {
 
             <ScrollReveal delay={220}>
               <p>
-                Horizon Humanity Care works to improve the welfare, dignity
-                and quality of life of retired personnel from Nigeria&apos;s
-                security agencies and the families connected to their
-                service.
+                Horizon Humanity Care works to improve the welfare, dignity and
+                quality of life of retired personnel from Nigeria&apos;s
+                security agencies and the families connected to their service.
               </p>
             </ScrollReveal>
 
@@ -181,9 +185,7 @@ export default function Home() {
           <div className="container hero-statement">
             <span>A LIFETIME OF SERVICE</span>
 
-            <strong>
-              DESERVES A FUTURE OF DIGNITY.
-            </strong>
+            <strong>DESERVES A FUTURE OF DIGNITY.</strong>
           </div>
         </div>
       </section>
@@ -198,19 +200,17 @@ export default function Home() {
             <div>
               <span className="kicker">WHY HORIZON</span>
 
-              <h2>
-                A lifetime of service deserves a future of dignity.
-              </h2>
+              <h2>A lifetime of service deserves a future of dignity.</h2>
             </div>
           </ScrollReveal>
 
           <ScrollReveal direction="right" delay={120}>
             <div className="large-copy">
               <p>
-                Retirement can bring changes in financial stability,
-                healthcare access, social connection, purpose and opportunity.
-                Horizon Humanity Care exists to help address these challenges
-                with practical, respectful support.
+                Retirement can bring changes in financial stability, healthcare
+                access, social connection, purpose and opportunity. Horizon
+                Humanity Care exists to help address these challenges with
+                practical, respectful support.
               </p>
 
               <p>
@@ -280,15 +280,13 @@ export default function Home() {
               <div>
                 <span className="kicker">OUR AREAS OF WORK</span>
 
-                <h2>
-                  Building a stronger future after service.
-                </h2>
+                <h2>Building a stronger future after service.</h2>
               </div>
 
               <p>
-                Our work combines practical support, empowerment, advocacy
-                and long-term partnerships to address the realities faced by
-                retired security personnel and their families.
+                Our work combines practical support, empowerment, advocacy and
+                long-term partnerships to address the realities faced by retired
+                security personnel and their families.
               </p>
             </div>
           </ScrollReveal>
@@ -298,23 +296,12 @@ export default function Home() {
               const Icon = program.icon;
 
               return (
-                <ScrollReveal
-                  key={program.number}
-                  delay={index * 70}
-                >
-                  <Link
-                    href="/programs"
-                    className="program-row"
-                  >
-                    <span className="program-number">
-                      {program.number}
-                    </span>
+                <ScrollReveal key={program.number} delay={index * 70}>
+                  <Link href="/programs" className="program-row">
+                    <span className="program-number">{program.number}</span>
 
                     <span className="program-icon">
-                      <Icon
-                        size={24}
-                        strokeWidth={1.5}
-                      />
+                      <Icon size={24} strokeWidth={1.5} />
                     </span>
 
                     <span className="program-info">
@@ -332,10 +319,7 @@ export default function Home() {
 
           <ScrollReveal delay={150}>
             <div className="center-action">
-              <Link
-                href="/programs"
-                className="button button-navy"
-              >
+              <Link href="/programs" className="button button-navy">
                 View All Programs
                 <ArrowRight size={17} />
               </Link>
@@ -348,32 +332,22 @@ export default function Home() {
           WHO WE SERVE
       ========================================= */}
 
-      <section
-        className="serve section"
-        id="who-we-serve"
-      >
+      <section className="serve section" id="who-we-serve">
         <div className="container">
           <div className="serve-grid">
             <ScrollReveal direction="left">
               <div>
-                <span className="kicker light-kicker">
-                  WHO WE SERVE
-                </span>
+                <span className="kicker light-kicker">WHO WE SERVE</span>
 
-                <h2>
-                  Serving across Nigeria&apos;s security community.
-                </h2>
+                <h2>Serving across Nigeria&apos;s security community.</h2>
 
                 <p>
                   Our focus extends across the security institutions whose
-                  personnel have dedicated their working lives to protecting
-                  the nation.
+                  personnel have dedicated their working lives to protecting the
+                  nation.
                 </p>
 
-                <Link
-                  href="/who-we-serve"
-                  className="light-link"
-                >
+                <Link href="/who-we-serve" className="light-link">
                   Explore Who We Serve
                   <ArrowRight size={17} />
                 </Link>
@@ -382,15 +356,9 @@ export default function Home() {
 
             <div className="beneficiary-list">
               {beneficiaries.map((item, index) => (
-                <ScrollReveal
-                  key={item}
-                  direction="right"
-                  delay={index * 70}
-                >
+                <ScrollReveal key={item} direction="right" delay={index * 70}>
                   <div>
-                    <span>
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
+                    <span>{String(index + 1).padStart(2, "0")}</span>
 
                     <strong>{item}</strong>
                   </div>
@@ -405,33 +373,25 @@ export default function Home() {
           OUR APPROACH
       ========================================= */}
 
-      <section
-        className="section approach"
-        id="approach"
-      >
+      <section className="section approach" id="approach">
         <div className="container">
           <ScrollReveal>
             <div className="center-heading">
               <span className="kicker">OUR APPROACH</span>
 
-              <h2>
-                From recognition to lasting impact.
-              </h2>
+              <h2>From recognition to lasting impact.</h2>
 
               <p>
                 We believe meaningful change requires more than immediate
-                assistance. It requires listening, partnership, empowerment
-                and sustained action.
+                assistance. It requires listening, partnership, empowerment and
+                sustained action.
               </p>
             </div>
           </ScrollReveal>
 
           <div className="approach-line">
             {approach.map((item, index) => (
-              <ScrollReveal
-                key={item.number}
-                delay={index * 100}
-              >
+              <ScrollReveal key={item.number} delay={index * 100}>
                 <div className="approach-item">
                   <span>{item.number}</span>
 
@@ -445,10 +405,7 @@ export default function Home() {
 
           <ScrollReveal delay={200}>
             <div className="center-action">
-              <Link
-                href="/our-approach"
-                className="text-link"
-              >
+              <Link href="/our-approach" className="text-link">
                 Learn About Our Approach
                 <ArrowRight size={17} />
               </Link>
@@ -466,13 +423,9 @@ export default function Home() {
           <ScrollReveal>
             <div className="section-heading">
               <div>
-                <span className="kicker">
-                  STRATEGIC OBJECTIVES
-                </span>
+                <span className="kicker">STRATEGIC OBJECTIVES</span>
 
-                <h2>
-                  Turning purpose into action.
-                </h2>
+                <h2>Turning purpose into action.</h2>
               </div>
 
               <p>
@@ -485,14 +438,9 @@ export default function Home() {
 
           <div className="objective-grid">
             {objectives.map((objective, index) => (
-              <ScrollReveal
-                key={objective}
-                delay={index * 70}
-              >
+              <ScrollReveal key={objective} delay={index * 70}>
                 <div className="objective">
-                  <span>
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
+                  <span>{String(index + 1).padStart(2, "0")}</span>
 
                   <p>{objective}</p>
                 </div>
@@ -510,27 +458,22 @@ export default function Home() {
         <div className="container impact-grid">
           <ScrollReveal direction="left">
             <div>
-              <span className="kicker">
-                THE CHANGE WE SEEK
-              </span>
+              <span className="kicker">THE CHANGE WE SEEK</span>
 
               <h2>
-                Because those who protected our future deserve
-                a future of their own.
+                Because those who protected our future deserve a future of their
+                own.
               </h2>
 
               <p>
                 Horizon Humanity Care aims to improve the quality of life of
                 retired security personnel by increasing healthcare access,
-                strengthening economic resilience, promoting social
-                inclusion, protecting retirees&apos; rights and supporting
-                continued purpose.
+                strengthening economic resilience, promoting social inclusion,
+                protecting retirees&apos; rights and supporting continued
+                purpose.
               </p>
 
-              <Link
-                href="/get-involved"
-                className="button button-gold"
-              >
+              <Link href="/get-involved" className="button button-gold">
                 Help Us Create Impact
                 <ArrowRight size={18} />
               </Link>
@@ -542,9 +485,7 @@ export default function Home() {
               <div>
                 <span>HEALTHCARE</span>
 
-                <strong>
-                  Improved access to care and wellbeing support.
-                </strong>
+                <strong>Improved access to care and wellbeing support.</strong>
               </div>
 
               <div>
@@ -558,17 +499,13 @@ export default function Home() {
               <div>
                 <span>SOCIAL INCLUSION</span>
 
-                <strong>
-                  Stronger families, networks and communities.
-                </strong>
+                <strong>Stronger families, networks and communities.</strong>
               </div>
 
               <div>
                 <span>RETIREMENT RIGHTS</span>
 
-                <strong>
-                  Greater awareness, advocacy and protection.
-                </strong>
+                <strong>Greater awareness, advocacy and protection.</strong>
               </div>
             </div>
           </ScrollReveal>
@@ -587,23 +524,17 @@ export default function Home() {
                 STRATEGIC PARTNERSHIPS
               </span>
 
-              <h2>
-                Together, we can honour their service.
-              </h2>
+              <h2>Together, we can honour their service.</h2>
 
               <p>
                 Horizon Humanity Care seeks collaboration with government
                 institutions, security institutions, pension administrators,
                 healthcare providers, corporate organizations, development
-                agencies, philanthropic foundations and community
-                organizations.
+                agencies, philanthropic foundations and community organizations.
               </p>
             </div>
 
-            <Link
-              href="/partnerships"
-              className="button button-white"
-            >
+            <Link href="/partnerships" className="button button-white">
               Explore Partnerships
               <ArrowRight size={18} />
             </Link>
@@ -618,9 +549,7 @@ export default function Home() {
       <ScrollReveal>
         <section className="final-cta">
           <div className="container">
-            <span className="kicker">
-              HORIZON HUMANITY CARE
-            </span>
+            <span className="kicker">HORIZON HUMANITY CARE</span>
 
             <h2>
               Every sacrifice deserves
@@ -634,18 +563,12 @@ export default function Home() {
             </p>
 
             <div className="hero-actions">
-              <Link
-                href="/get-involved"
-                className="button button-navy"
-              >
+              <Link href="/get-involved" className="button button-navy">
                 Get Involved
                 <ArrowRight size={18} />
               </Link>
 
-              <Link
-                href="/contact"
-                className="button button-outline"
-              >
+              <Link href="/contact" className="button button-outline">
                 Contact Horizon
               </Link>
             </div>
