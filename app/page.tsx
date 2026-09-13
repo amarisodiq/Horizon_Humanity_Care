@@ -3,67 +3,8 @@ import ScrollReveal from "./components/ScrollReveal";
 import {
   ArrowRight,
   ShieldCheck,
-  HeartPulse,
-  BriefcaseBusiness,
-  Scale,
-  WalletCards,
-  GraduationCap,
-  UsersRound,
-  HandHeart,
-  Landmark,
   ChevronRight,
 } from "lucide-react";
-
-const programs = [
-  {
-    number: "01",
-    icon: HeartPulse,
-    title: "Healthcare & Wellness",
-    text: "Medical outreaches, health screenings, psychosocial support, health insurance advocacy and healthcare partnerships.",
-  },
-  {
-    number: "02",
-    icon: BriefcaseBusiness,
-    title: "Economic Empowerment",
-    text: "Entrepreneurship training, business support, cooperative opportunities, agricultural projects and pathways to sustainable income.",
-  },
-  {
-    number: "03",
-    icon: HandHeart,
-    title: "Welfare & Humanitarian Support",
-    text: "Emergency assistance, food support, clothing, housing assistance and relief for vulnerable retirees.",
-  },
-  {
-    number: "04",
-    icon: Scale,
-    title: "Legal & Pension Support",
-    text: "Guidance on pensions, gratuities, documentation, legal rights and access to government benefits.",
-  },
-  {
-    number: "05",
-    icon: WalletCards,
-    title: "Financial Literacy",
-    text: "Retirement planning, budgeting, investment education, pension management and wealth preservation.",
-  },
-  {
-    number: "06",
-    icon: GraduationCap,
-    title: "Capacity Building",
-    text: "Digital literacy, vocational skills, leadership development, mentoring and lifelong learning.",
-  },
-  {
-    number: "07",
-    icon: UsersRound,
-    title: "Family & Community Development",
-    text: "Support for spouses, widows, dependents, youth mentorship and stronger community connections.",
-  },
-  {
-    number: "08",
-    icon: Landmark,
-    title: "Advocacy & Policy",
-    text: "Working with stakeholders to strengthen legislation, policies and social protection for retired personnel.",
-  },
-];
 
 const beneficiaries = [
   "Armed Forces",
@@ -141,29 +82,35 @@ export default function Home() {
 
             <ScrollReveal delay={120}>
               <h1>
-                Honouring Service.
+                After a lifetime of protecting Nigeria,
                 <br />
-                <em>Empowering Retirement.</em>
+                <em>who protects the people who served?</em>
               </h1>
             </ScrollReveal>
 
             <ScrollReveal delay={220}>
               <p>
-                Horizon Humanity Care works to improve the welfare, dignity and
-                quality of life of retired personnel from Nigeria&apos;s
-                security agencies and the families connected to their service.
+                Horizon Humanity Care is a Nigerian non-profit organisation
+                committed to improving the lives of retired security personnel
+                and their families through practical support, healthcare,
+                economic opportunity, retirement readiness, family support and
+                public recognition.
               </p>
             </ScrollReveal>
 
             <ScrollReveal delay={320}>
               <div className="hero-actions">
-                <Link href="/programs" className="button button-gold">
-                  Explore Our Programs
+                <Link href="/get-involved" className="button button-gold">
+                  Support Our Work
                   <ArrowRight size={18} />
                 </Link>
 
-                <Link href="/about" className="button button-outline">
-                  Discover Horizon
+                <Link href="/partnerships" className="button button-outline">
+                  Partner With Us
+                </Link>
+
+                <Link href="/contact" className="button button-outline">
+                  Get Support
                 </Link>
               </div>
             </ScrollReveal>
@@ -173,8 +120,8 @@ export default function Home() {
                 <ShieldCheck size={18} />
 
                 <span>
-                  Supporting dignity, wellbeing, opportunity and continued
-                  purpose.
+                  We believe service should never become invisible when the
+                  uniform comes off.
                 </span>
               </div>
             </ScrollReveal>
@@ -183,9 +130,9 @@ export default function Home() {
 
         <div className="hero-bottom">
           <div className="container hero-statement">
-            <span>A LIFETIME OF SERVICE</span>
+            <span>2030 NATIONAL AMBITION</span>
 
-            <strong>DESERVES A FUTURE OF DIGNITY.</strong>
+            <strong>REACHING &amp; EMPOWERING 24,000 PEOPLE.</strong>
           </div>
         </div>
       </section>
@@ -194,106 +141,215 @@ export default function Home() {
       WHY HORIZON
       ========================================= */}
 
-      <section className="intro section">
-        <div className="container why-horizon-grid">
-          {/* IMAGE */}
-          <ScrollReveal direction="left">
-            <div className="why-horizon-image">
-              <img
-                src="/images/why-horizon.jpg"
-                alt="Horizon Humanity Care community support and engagement"
-              />
+      {/* =========================================
+      HHC BY THE NUMBERS
+      ========================================= */}
 
-              <div className="why-horizon-image-caption">
-                <span>HORIZON HUMANITY CARE</span>
-                <strong>Service. Dignity. Purpose.</strong>
-              </div>
-            </div>
-          </ScrollReveal>
+      <section className="hhc-numbers section">
+        <div className="container">
+          <div className="hhc-numbers-layout">
+            {/* IMAGE */}
+            <ScrollReveal direction="left">
+              <div className="hhc-numbers-image">
+                <img
+                  src="/images/hhc-impact.jpg"
+                  alt="Retired security personnel and community members"
+                />
 
-          {/* CONTENT */}
-          <ScrollReveal direction="right" delay={120}>
-            <div className="why-horizon-content">
-              <span className="kicker">WHY HORIZON</span>
+                <div className="hhc-numbers-image-overlay">
+                  <span>HORIZON HUMANITY CARE</span>
 
-              <h2>
-                A lifetime of service deserves
-                <em> a future of dignity.</em>
-              </h2>
-
-              <p>
-                Retirement can bring changes in financial stability, healthcare
-                access, social connection, purpose and opportunity. Horizon
-                Humanity Care exists to help address these challenges with
-                practical, respectful support.
-              </p>
-
-              <p>
-                Our work is centred on retired security personnel and the
-                families and dependents connected to their service. We believe
-                support should never erase independence — it should strengthen
-                it.
-              </p>
-
-              <div className="why-horizon-highlight">
-                <ShieldCheck size={21} />
-
-                <div>
-                  <strong>Dignity remains at the centre.</strong>
-
-                  <span>
-                    Our approach is designed to support independence, wellbeing
-                    and continued purpose after service.
-                  </span>
+                  <strong>
+                    Service should never
+                    <br />
+                    become invisible.
+                  </strong>
                 </div>
               </div>
+            </ScrollReveal>
 
-              <Link href="/about" className="text-link">
-                Read Our Story
-                <ArrowRight size={17} />
-              </Link>
-            </div>
-          </ScrollReveal>
+            {/* CONTENT */}
+            <ScrollReveal direction="right" delay={120}>
+              <div className="hhc-numbers-content">
+                <span className="kicker">HHC BY THE NUMBERS</span>
+
+                <h2>
+                  Service deserves
+                  <br />
+                  <em>measurable impact.</em>
+                </h2>
+
+                <p className="hhc-numbers-intro">
+                  Our ambition is to turn recognition and support into
+                  meaningful, measurable outcomes for retired security
+                  personnel, fallen heroes&apos; families and their dependants.
+                </p>
+
+                {/* STATISTICS */}
+                <div className="hhc-stats-grid">
+                  <div className="hhc-stat">
+                    <strong>2021</strong>
+
+                    <span>HHC FOUNDED</span>
+
+                    <p>
+                      Established to support retired security personnel and
+                      families connected to their service.
+                    </p>
+                  </div>
+
+                  <div className="hhc-stat hhc-stat-featured">
+                    <strong>24,000</strong>
+
+                    <span>2030 REACH &amp; EMPOWERMENT TARGET</span>
+
+                    <p>
+                      Retired security personnel, fallen heroes&apos; families
+                      and dependants we aim to reach and empower across Nigeria.
+                    </p>
+                  </div>
+
+                  <div className="hhc-stat">
+                    <strong>5</strong>
+
+                    <span>CORE PROGRAMME PILLARS</span>
+
+                    <p>
+                      Welfare, health, economic resilience, family and
+                      community, honour and retirement readiness.
+                    </p>
+                  </div>
+
+                  <div className="hhc-stat">
+                    <strong>35,000+</strong>
+
+                    <span>INDICATIVE SERVICE COMMUNITY</span>
+
+                    <p>
+                      Retired security personnel and pension beneficiaries
+                      reflected in available public data.
+                    </p>
+                  </div>
+                </div>
+
+                {/* SEVEN COMMUNITIES */}
+                <div className="hhc-seven">
+                  <strong>7</strong>
+
+                  <div>
+                    <span>SECURITY-SERVICE COMMUNITIES</span>
+
+                    <p>
+                      Core security-service communities covered through the
+                      RSPEI framework.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </ScrollReveal>
+          </div>
         </div>
       </section>
 
       {/* =========================================
           COMMITMENTS
       ========================================= */}
+      {/* =========================================
+    THOSE WHO SERVED DESERVE TO BE REMEMBERED
+========================================= */}
 
-      <section className="commitment">
-        <div className="container commitment-grid">
-          <ScrollReveal delay={0}>
-            <div>
-              <span>01</span>
-              <strong>Dignity</strong>
-              <p>Honouring those who served.</p>
-            </div>
-          </ScrollReveal>
+      <section className="remember-section">
+        <div className="container">
+          <div className="remember-grid">
+            {/* LEFT — STORY */}
+            <ScrollReveal direction="left">
+              <div className="remember-copy">
+                <span className="kicker">
+                  THOSE WHO SERVED DESERVE TO BE REMEMBERED
+                </span>
 
-          <ScrollReveal delay={100}>
-            <div>
-              <span>02</span>
-              <strong>Wellbeing</strong>
-              <p>Supporting healthier retirement.</p>
-            </div>
-          </ScrollReveal>
+                <h2>
+                  A lifetime of service
+                  <br />
+                  deserves a future of
+                  <br />
+                  <em>dignity.</em>
+                </h2>
 
-          <ScrollReveal delay={200}>
-            <div>
-              <span>03</span>
-              <strong>Opportunity</strong>
-              <p>Creating pathways for continued contribution.</p>
-            </div>
-          </ScrollReveal>
+                <p>
+                  Every day, men and women in Nigeria&apos;s security services
+                  protect lives, communities, institutions and the nation. But
+                  what happens when active service ends?
+                </p>
 
-          <ScrollReveal delay={300}>
-            <div>
-              <span>04</span>
-              <strong>Advocacy</strong>
-              <p>Promoting stronger retirement protection.</p>
-            </div>
-          </ScrollReveal>
+                <p>
+                  For some, retirement brings a welcome new chapter; for others,
+                  it brings uncertainty — reduced income, healthcare needs, loss
+                  of professional identity, family pressure, limited
+                  opportunities and the difficult adjustment to life outside the
+                  structure of service.
+                </p>
+
+                <p>HHC exists to help bridge that gap.</p>
+
+                <div className="remember-actions">
+                  <Link href="/about" className="text-link">
+                    Learn About HHC
+                    <ArrowRight size={16} />
+                  </Link>
+
+                  <Link href="/programs" className="text-link">
+                    Explore Our Programmes
+                    <ArrowRight size={16} />
+                  </Link>
+                </div>
+              </div>
+            </ScrollReveal>
+
+            {/* RIGHT — THREE COMMITMENTS */}
+            <ScrollReveal direction="right" delay={120}>
+              <div className="remember-principles">
+                <div className="remember-principle">
+                  <span>01</span>
+
+                  <div>
+                    <h3>We honour the service.</h3>
+                    <p>
+                      We recognise the sacrifice, discipline and contribution of
+                      those who dedicated their working lives to protecting
+                      Nigeria.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="remember-principle">
+                  <span>02</span>
+
+                  <div>
+                    <h3>We support the transition.</h3>
+                    <p>
+                      We help retirees and their families navigate the
+                      practical, health, financial and social realities that can
+                      come with leaving active service.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="remember-principle">
+                  <span>03</span>
+
+                  <div>
+                    <h3>We help build what comes next.</h3>
+                    <p>
+                      Through empowerment, opportunity, preparation and
+                      community, we help create pathways toward continued
+                      purpose and dignity.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </ScrollReveal>
+          </div>
         </div>
       </section>
 
@@ -301,101 +357,204 @@ export default function Home() {
       PROGRAMS
       ========================================= */}
 
-      <section className="section programs" id="programs">
+      <section className="programmes-section">
         <div className="container">
+          {/* HEADER */}
           <ScrollReveal>
-            <div className="section-heading programs-heading">
+            <div className="programmes-header">
               <div>
-                <span className="kicker">OUR AREAS OF WORK</span>
+                <span className="kicker">OUR PROGRAMMES</span>
 
                 <h2>
-                  Building a stronger future
+                  Turning service
                   <br />
-                  <em>after service.</em>
+                  into <em>continued purpose.</em>
                 </h2>
               </div>
 
-              <div className="programs-heading-copy">
-                <p>
-                  Our programmes respond to the practical realities of
-                  retirement, combining welfare, healthcare, economic
-                  empowerment, advocacy and skills development with a strong
-                  focus on dignity and independence.
-                </p>
+              <p>
+                HHC combines practical welfare, healthcare, economic
+                opportunity, family support and retirement readiness to help
+                retired security personnel and their families navigate life
+                beyond active service.
+              </p>
+            </div>
+          </ScrollReveal>
 
-                <Link href="/programs" className="text-link">
-                  Explore our approach
-                  <ArrowRight size={16} />
-                </Link>
+          {/* RSPEI */}
+          <ScrollReveal delay={100}>
+            <div className="rspei-block">
+
+              {/* FEATURED RSPEI CONTENT */}
+              <div className="rspei-feature">
+                <div className="rspei-feature-image">
+                  <img
+                    src="/images/hhc-impact.jpg"
+                    alt="Retired security personnel and community members"
+                  />
+
+                  <div className="rspei-feature-overlay" />
+
+                  <div className="rspei-feature-caption">
+                    <span>RSPEI</span>
+
+                    <strong>
+                      Supporting life
+                      <br />
+                      beyond service.
+                    </strong>
+                  </div>
+                </div>
+
+                <div className="rspei-feature-content">
+                  <span className="programme-number">01</span>
+
+                  <span className="programme-label">
+                    FLAGSHIP PROGRAMME
+                  </span>
+
+                  <h3>
+                    Retired Security
+                    <br />
+                    Personnel Support
+                    <br />
+                    &amp; Empowerment
+                    <br />
+                    Initiative
+                  </h3>
+
+                  <p>
+                    HHC&apos;s flagship programme, bringing welfare, healthcare,
+                    economic resilience, family support and retirement readiness
+                    together into a coordinated framework.
+                  </p>
+
+                  <Link href="/programs" className="text-link">
+                    Explore RSPEI
+                    <ArrowRight size={16} />
+                  </Link>
+                </div>
+              </div>
+
+              {/* FIVE PILLARS */}
+              <div className="rspei-pillars">
+                <div className="programme-pillar">
+                  <span>01</span>
+
+                  <div>
+                    <h4>Dignity &amp; Welfare</h4>
+
+                    <p>
+                      Emergency assistance, food, essential household supplies,
+                      housing repairs and referrals.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="programme-pillar">
+                  <span>02</span>
+
+                  <div>
+                    <h4>Health &amp; Wellness</h4>
+
+                    <p>
+                      Medical outreaches, health screening, referrals,
+                      medication support, education and psychosocial wellbeing
+                      initiatives.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="programme-pillar">
+                  <span>03</span>
+
+                  <div>
+                    <h4>Economic Resilience</h4>
+
+                    <p>
+                      Entrepreneurship training, cooperative development,
+                      financial literacy, livelihood support and second-career
+                      pathways.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="programme-pillar">
+                  <span>04</span>
+
+                  <div>
+                    <h4>Family &amp; Community</h4>
+
+                    <p>
+                      Educational assistance, youth mentorship, support for
+                      spouses, widows, widowers and family resilience
+                      initiatives.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="programme-pillar">
+                  <span>05</span>
+
+                  <div>
+                    <h4>Honour &amp; Readiness</h4>
+
+                    <p>
+                      Pre-retirement awareness, pension information, financial
+                      literacy, documentation guidance and public recognition.
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </ScrollReveal>
 
-          <div className="program-list">
-            {programs.map((program, index) => {
-              const Icon = program.icon;
+          {/* USSA */}
+          <ScrollReveal delay={180}>
+            <div className="ussa-block">
+              <div className="ussa-mark">
+                <span>02</span>
+                <strong>USSA</strong>
+              </div>
 
-              return (
-                <ScrollReveal key={program.number} delay={index * 80}>
-                  <Link
-                    href="/programs"
-                    className={`program-card ${
-                      index % 2 !== 0 ? "program-card-reverse" : ""
-                    }`}
-                  >
-                    <span className="program-number">{program.number}</span>
+              <div className="ussa-content">
+                <span className="programme-label">
+                  RECOGNITION &amp; MEDIA INITIATIVE
+                </span>
 
-                    <span className="program-icon">
-                      <Icon size={27} strokeWidth={1.4} />
-                    </span>
-
-                    <span className="program-info">
-                      <span className="program-label">
-                        PROGRAMME {program.number}
-                      </span>
-
-                      <h3>{program.title}</h3>
-
-                      <p>{program.text}</p>
-
-                      <span className="program-learn">
-                        Learn more
-                        <ArrowRight size={15} />
-                      </span>
-                    </span>
-
-                    <span className="program-card-arrow">
-                      <ChevronRight size={22} />
-                    </span>
-                  </Link>
-                </ScrollReveal>
-              );
-            })}
-          </div>
-
-          <ScrollReveal delay={150}>
-            <div className="programs-footer">
-              <div>
-                <span className="programs-footer-line" />
+                <h3>
+                  Unsung Shield Awards
+                  <br />
+                  &amp; Media Initiative
+                </h3>
 
                 <p>
-                  Practical support. Sustainable opportunity.
-                  <strong> Lasting dignity.</strong>
+                  A recognition and storytelling platform dedicated to honouring
+                  active personnel, veterans and families through interviews,
+                  storytelling, media features, oral history archives, public
+                  campaigns and recognition events.
                 </p>
               </div>
 
-              <Link href="/programs" className="button button-navy">
-                View All Programs
-                <ArrowRight size={17} />
-              </Link>
+              <div className="ussa-quote">
+                <span>OUR BELIEF</span>
+
+                <strong>
+                  Honour is not an accessory
+                  <br />
+                  to our work; it is part
+                  <br />
+                  of the work.
+                </strong>
+              </div>
             </div>
           </ScrollReveal>
         </div>
       </section>
 
       {/* =========================================
-    WHO WE SERVE
-========================================= */}
+      WHO WE SERVE
+      ========================================= */}
 
       <section className="serve section" id="who-we-serve">
         <div className="container">
@@ -632,6 +791,43 @@ export default function Home() {
               Explore Partnerships
               <ArrowRight size={18} />
             </Link>
+          </div>
+        </section>
+      </ScrollReveal>
+
+      {/* =========================================
+          DONATE
+      ========================================= */}
+
+      <ScrollReveal>
+        <section className="donate-cta">
+          <div className="container donate-cta-inner">
+            <div className="donate-cta-copy">
+              <span className="kicker light-kicker">MAKE A DIFFERENCE</span>
+
+              <h2>
+                Honour their service.
+                <br />
+                <em>Secure their retirement.</em>
+              </h2>
+
+              <p>
+                Your contribution helps retired security personnel, fallen heroes&apos;
+                families and veterans transition into life beyond active service
+                with dignity, care and opportunity.
+              </p>
+            </div>
+
+            <div className="donate-cta-action">
+              <Link href="/donate" className="button button-gold">
+                Donate Now
+                <ArrowRight size={18} />
+              </Link>
+
+              <span>
+                Every contribution helps us turn service into continued purpose.
+              </span>
+            </div>
           </div>
         </section>
       </ScrollReveal>
