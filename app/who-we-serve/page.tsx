@@ -8,12 +8,17 @@ import {
   Building2,
   UserRound,
   Network,
+  Heart,
+  GraduationCap,
+  BriefcaseBusiness,
+  BadgeCheck,
 } from "lucide-react";
 
 const institutions = [
   {
     number: "01",
     title: "Armed Forces",
+    subtitle: "Army · Navy · Air Force",
     description:
       "Supporting retired personnel whose careers have been dedicated to the defence and security of Nigeria.",
     image: "/images/serve-armed-forces.jpg",
@@ -28,6 +33,7 @@ const institutions = [
   {
     number: "03",
     title: "Nigeria Security and Civil Defence Corps",
+    subtitle: "NSCDC",
     description:
       "Extending support to retired personnel who served communities through civil protection and national security responsibilities.",
     image: "/images/serve-nscdc.jpg",
@@ -35,6 +41,7 @@ const institutions = [
   {
     number: "04",
     title: "Department of State Services",
+    subtitle: "DSS",
     description:
       "Recognizing retired personnel whose careers contributed to national intelligence and security.",
     image: "/images/serve-dss.jpg",
@@ -65,30 +72,48 @@ const institutions = [
 const supportAreas = [
   {
     icon: HeartHandshake,
-    title: "Retired Personnel",
-    text: "Supporting individuals as they transition from active service into retirement and a new phase of life.",
-  },
-  {
-    icon: Users,
-    title: "Spouses & Widows",
+    number: "01",
+    title: "Spouses",
     text: "Recognizing the families and spouses who have shared the responsibilities and sacrifices of service.",
   },
   {
-    icon: UserRound,
-    title: "Dependents",
-    text: "Where appropriate, supporting dependents and families connected to retired personnel.",
+    icon: Heart,
+    number: "02",
+    title: "Widows & Widowers",
+    text: "Supporting eligible widows and widowers connected to retired or deceased security personnel.",
+  },
+  {
+    icon: GraduationCap,
+    number: "03",
+    title: "Children & Dependants",
+    text: "Where appropriate, supporting children, dependants and families connected to retired personnel.",
+  },
+  {
+    icon: Users,
+    number: "04",
+    title: "Fallen Heroes' Families",
+    text: "Supporting vulnerable families of deceased personnel through welfare, healthcare, education and livelihood opportunities.",
+  },
+  {
+    icon: BadgeCheck,
+    number: "05",
+    title: "Serving Personnel Approaching Retirement",
+    text: "Helping personnel prepare for the transition from active service into retirement with greater awareness and readiness.",
   },
   {
     icon: Network,
-    title: "Communities",
-    text: "Strengthening networks, social connections and community relationships around retired personnel.",
+    number: "06",
+    title: "Service Communities",
+    text: "Supporting other members of service communities who require relevant assistance and connection to appropriate resources.",
   },
 ];
 
 export default function WhoWeServePage() {
   return (
     <main>
-      {/* HERO */}
+      {/* =========================================================
+          HERO
+      ========================================================= */}
       <section className="serve-page-hero">
         <div className="serve-page-overlay" />
 
@@ -102,31 +127,43 @@ export default function WhoWeServePage() {
 
           <ScrollReveal delay={120}>
             <h1>
-              Honouring service
+              A growing community
               <br />
-              <em>across Nigeria's security community.</em>
+              <em>of people who served.</em>
             </h1>
           </ScrollReveal>
 
           <ScrollReveal delay={220}>
             <p>
-              Horizon Humanity Care focuses on retired personnel from
-              Nigeria's security institutions, while recognizing the families,
-              dependents and communities connected to their service.
+              Horizon Humanity Care focuses on retired personnel across
+              Nigeria&apos;s security and protective institutions, while
+              recognizing the families, dependants and communities connected
+              to their service.
             </p>
           </ScrollReveal>
         </div>
+
+        <div className="serve-page-hero-bottom">
+          <div className="container">
+            <span>WHO WE SERVE</span>
+            <strong>RETIREES · FAMILIES · FALLEN HEROES</strong>
+          </div>
+        </div>
       </section>
 
-      {/* INTRO */}
+      {/* =========================================================
+          OVERVIEW
+      ========================================================= */}
       <section className="section serve-introduction">
         <div className="container serve-intro-grid">
           <ScrollReveal direction="left">
             <div>
-              <span className="kicker">OUR BENEFICIARIES</span>
+              <span className="kicker">A GROWING COMMUNITY</span>
 
               <h2>
-                Service may end, but its impact continues.
+                Retirement should be a transition,
+                <br />
+                not a disappearance.
               </h2>
             </div>
           </ScrollReveal>
@@ -134,41 +171,57 @@ export default function WhoWeServePage() {
           <ScrollReveal direction="right">
             <div className="serve-intro-copy">
               <p>
-                Retirement represents a major transition. For many personnel,
-                it is a period of adjustment involving changes in income,
-                healthcare, social networks, routine and personal purpose.
+                A career in security service is built around structure, a
+                chain of command, responsibilities, uniforms, colleagues,
+                routines, institutional identity, and a clear sense of
+                purpose.
               </p>
 
               <p>
-                Our approach recognizes the individual as well as the wider
-                support system around them. That is why Horizon's work extends
-                beyond retired personnel to include families, dependents and
-                communities where appropriate.
+                When active service ends, retirement can bring a welcome new
+                chapter for some, while for others, it exposes challenges
+                that were difficult to prepare for. These may include
+                financial insecurity, healthcare needs, delayed or inadequate
+                retirement benefits, reduced household income, loss of
+                professional identity, social isolation, limited economic
+                opportunities, family responsibilities, unexpected
+                emergencies, and insufficient preparation before retirement.
+              </p>
+
+              <p className="serve-highlight">
+                Horizon Humanity Care exists to help close this gap, because
+                retirement should be a transition, not a disappearance.
+              </p>
+
+              <p className="serve-action-statement">
+                <strong>
+                  We choose action instead of complaints, together we can
+                  change the narrative.
+                </strong>
               </p>
             </div>
           </ScrollReveal>
         </div>
       </section>
 
-      {/* SECURITY INSTITUTIONS */}
+      {/* =========================================================
+          SECURITY SERVICES
+      ========================================================= */}
       <section className="institutions-section">
         <div className="container">
           <ScrollReveal>
             <div className="section-heading">
               <div>
                 <span className="kicker">
-                  SECURITY INSTITUTIONS
+                  SECURITY SERVICES &amp; AGENCIES
                 </span>
 
-                <h2>
-                  Serving those who served the nation.
-                </h2>
+                <h2>Serving those who served the nation.</h2>
               </div>
 
               <p>
-                Horizon seeks to support retired personnel across Nigeria's
-                security ecosystem while working respectfully with relevant
-                institutions and stakeholders.
+                Our work is designed for retired personnel across Nigeria&apos;s
+                primary security and protective institutions.
               </p>
             </div>
           </ScrollReveal>
@@ -190,6 +243,14 @@ export default function WhoWeServePage() {
                   </div>
 
                   <div className="institution-content">
+                    <div className="institution-meta">
+                      <span>{institution.number}</span>
+
+                      {institution.subtitle && (
+                        <small>{institution.subtitle}</small>
+                      )}
+                    </div>
+
                     <h3>{institution.title}</h3>
 
                     <p>{institution.description}</p>
@@ -206,26 +267,41 @@ export default function WhoWeServePage() {
               </ScrollReveal>
             ))}
           </div>
+
+          <ScrollReveal>
+            <div className="institutions-note">
+              <Shield size={20} />
+
+              <p>
+                Our scope also includes{" "}
+                <strong>
+                  other eligible security and protective services
+                </strong>{" "}
+                where relevant to HHC&apos;s programmes and support framework.
+              </p>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
-      {/* FAMILIES */}
+      {/* =========================================================
+          WIDER BENEFICIARY COMMUNITY
+      ========================================================= */}
       <section className="section family-section">
         <div className="container">
           <ScrollReveal>
             <div className="family-heading">
-              <span className="kicker">
-                BEYOND THE INDIVIDUAL
-              </span>
+              <span className="kicker">THE WIDER BENEFICIARY COMMUNITY</span>
 
               <h2>
-                Supporting the people and communities connected to service.
+                Service affects more than just the person wearing the uniform.
               </h2>
 
               <p>
-                The wellbeing of retired personnel is closely connected to
-                their families and communities. Our work therefore considers
-                the wider human context of retirement.
+                An officer&apos;s journey shapes the entire household. Our
+                wider beneficiary community therefore includes families,
+                dependants and other members of service communities who may
+                require relevant support.
               </p>
             </div>
           </ScrollReveal>
@@ -236,17 +312,15 @@ export default function WhoWeServePage() {
 
               return (
                 <ScrollReveal
-                  key={item.title}
-                  delay={index * 90}
+                  key={item.number}
+                  delay={index * 80}
                 >
                   <article className="support-card">
                     <div className="support-icon">
                       <Icon size={25} strokeWidth={1.5} />
                     </div>
 
-                    <span>
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
+                    <span>{item.number}</span>
 
                     <h3>{item.title}</h3>
 
@@ -259,24 +333,175 @@ export default function WhoWeServePage() {
         </div>
       </section>
 
-      {/* HUMAN-CENTRED APPROACH */}
+      {/* =========================================================
+          FALLEN HEROES
+      ========================================================= */}
+      <section className="fallen-heroes-section">
+        <div className="fallen-heroes-image" />
+
+        <div className="fallen-heroes-overlay" />
+
+        <div className="container fallen-heroes-inner">
+          <ScrollReveal direction="left">
+            <div className="fallen-heroes-content">
+              <span className="kicker light-kicker">
+                SPECIAL FOCUS
+              </span>
+
+              <h2>Families of fallen heroes should not be left behind.</h2>
+
+              <p>
+                When a security officer dies in the line of duty, the uniform
+                is folded away, but the family continues living with the
+                consequences.
+              </p>
+
+              <p>
+                Through our Family &amp; Community pillar, HHC provides
+                specialised support for eligible families of fallen personnel,
+                including welfare, healthcare, education-related assistance,
+                livelihood opportunities, and public remembrance.
+              </p>
+
+              <p>
+                Our goal is to ensure that the sacrifice of their loved one is
+                remembered and that the family is not left to navigate every
+                challenge alone.
+              </p>
+
+              <Link
+                href="/get-involved"
+                className="button button-gold"
+              >
+                Support This Work
+                <ArrowRight size={18} />
+              </Link>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* =========================================================
+          SCALE & DATA
+      ========================================================= */}
+      <section className="section serve-scale-section">
+        <div className="container">
+          <ScrollReveal>
+            <div className="serve-scale-header">
+              <span className="kicker">SCALE OF THE COMMUNITY &amp; DATA</span>
+
+              <h2>
+                A substantial community,
+                <br />
+                <em>measured responsibly.</em>
+              </h2>
+
+              <p>
+                Nigeria does not currently have one publicly consolidated
+                database covering every retired security personnel across all
+                individual agencies. Available pension, government, and
+                retirement data are distributed across separate institutions
+                and pension administrators.
+              </p>
+            </div>
+          </ScrollReveal>
+
+          <div className="serve-data-grid">
+            <ScrollReveal>
+              <article className="serve-data-card serve-data-feature">
+                <span className="serve-data-number">35,000+</span>
+
+                <h3>
+                  Indicative service community
+                </h3>
+
+                <p>
+                  Based on available public data, HHC works within a potential
+                  service community of more than 35,000 retired security
+                  personnel and pension beneficiaries.
+                </p>
+
+                <small>
+                  Conservative indicative aggregation — not an exact national
+                  census.
+                </small>
+              </article>
+            </ScrollReveal>
+
+            <div className="serve-data-side">
+              <ScrollReveal delay={100}>
+                <article className="serve-data-card">
+                  <span className="serve-data-label">
+                    NPF PENSIONS
+                  </span>
+
+                  <strong>30,370</strong>
+
+                  <p>
+                    Approximately 30,370 police retirees reflected as having
+                    received benefits since inception in available reporting.
+                  </p>
+                </article>
+              </ScrollReveal>
+
+              <ScrollReveal delay={180}>
+                <article className="serve-data-card">
+                  <span className="serve-data-label">
+                    RECENT MONTHLY PAYMENTS
+                  </span>
+
+                  <strong>25,572</strong>
+
+                  <p>
+                    Approximately 25,572 police retirees receiving monthly
+                    payments in recent reporting.
+                  </p>
+                </article>
+              </ScrollReveal>
+            </div>
+          </div>
+
+          <ScrollReveal>
+            <div className="serve-data-context">
+              <BriefcaseBusiness size={20} />
+
+              <p>
+                Recent military retirement cohorts have included hundreds of
+                Army and Navy personnel, while Nigeria Customs Service records
+                reflect thousands of retired beneficiaries and additional
+                personnel scheduled for statutory retirement.
+              </p>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* =========================================================
+          HUMAN-CENTRED APPROACH
+      ========================================================= */}
       <ScrollReveal>
         <section className="human-centred-section">
           <div className="human-centred-image" />
 
           <div className="human-centred-content">
             <span className="kicker light-kicker">
-              A HUMAN-CENTRED APPROACH
+              THE VERIFICATION &amp; ASSESSMENT PRINCIPLE
             </span>
 
             <h2>
-              Every beneficiary is more than a programme statistic.
+              We do not assume every retiree is vulnerable.
             </h2>
 
             <p>
-              We believe support should begin with listening. Understanding
-              individual circumstances allows interventions to be more
-              respectful, relevant and effective.
+              Horizon Humanity Care recognizes the strength, discipline, and
+              continued capability of retired security personnel.
+            </p>
+
+            <p>
+              Our approach begins with registration, rigorous verification of
+              service history and status, and individual needs assessment.
+              This ensures that resources reach the people and families who
+              genuinely require meaningful intervention.
             </p>
 
             <div className="human-principles">
@@ -286,8 +511,13 @@ export default function WhoWeServePage() {
               </div>
 
               <div>
+                <BadgeCheck size={19} />
+                <span>Verify before intervention</span>
+              </div>
+
+              <div>
                 <HeartHandshake size={19} />
-                <span>Respectful support</span>
+                <span>Needs-based support</span>
               </div>
 
               <div>
@@ -304,18 +534,16 @@ export default function WhoWeServePage() {
         </section>
       </ScrollReveal>
 
-      {/* PARTNERSHIP */}
+      {/* =========================================================
+          CTA
+      ========================================================= */}
       <ScrollReveal>
         <section className="serve-cta">
           <div className="container serve-cta-inner">
             <div>
-              <span className="kicker">
-                PARTNER WITH US
-              </span>
+              <span className="kicker">PARTNER WITH US</span>
 
-              <h2>
-                Help us reach more people who served.
-              </h2>
+              <h2>Help us reach more people who served.</h2>
 
               <p>
                 Institutions, organizations, professionals and individuals
@@ -330,6 +558,14 @@ export default function WhoWeServePage() {
                 className="button button-gold"
               >
                 Explore Partnerships
+                <ArrowRight size={18} />
+              </Link>
+
+              <Link
+                href="/donate"
+                className="button button-outline"
+              >
+                Donate Now
                 <ArrowRight size={18} />
               </Link>
 

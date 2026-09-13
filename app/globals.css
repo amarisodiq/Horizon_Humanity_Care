@@ -13519,3 +13519,1025 @@ body {
     line-height: 1.4;
   }
 }
+
+/* =========================================================
+   HHC — WHO WE SERVE PAGE
+   FINAL LAYOUT OVERRIDES
+   ========================================================= */
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+   .serve-page-hero {
+    min-height: 720px;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    padding: 150px 0 120px;
+    color: #ffffff;
+    overflow: hidden;
+    background:
+      linear-gradient(
+        90deg,
+        rgba(3, 18, 38, 0.96) 0%,
+        rgba(7, 29, 59, 0.72) 52%,
+        rgba(7, 29, 59, 0.42) 100%
+      ),
+      url("/images/who-we-serve-hero.jpg") center / cover no-repeat;
+  }
+  
+  .serve-page-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+      linear-gradient(
+        180deg,
+        rgba(3, 17, 35, 0.05) 0%,
+        rgba(3, 17, 35, 0.18) 45%,
+        rgba(3, 17, 35, 0.72) 100%
+      );
+    pointer-events: none;
+  }
+  
+  .serve-page-content {
+    position: relative;
+    z-index: 2;
+    width: min(1180px, calc(100% - 48px));
+    margin: 0 auto;
+  }
+  
+  .serve-page-content .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+  
+  .serve-page-content .eyebrow > span {
+    width: 40px;
+    height: 2px;
+    background: var(--gold);
+  }
+  
+  .serve-page-content h1 {
+    max-width: 980px;
+    margin: 0;
+    color: #ffffff;
+    font-family: "Manrope", sans-serif;
+    font-size: clamp(50px, 6.2vw, 86px);
+    line-height: 0.98;
+    letter-spacing: -0.055em;
+    font-weight: 700;
+  }
+  
+  .serve-page-content h1 em {
+    color: var(--gold-light);
+    font-style: normal;
+  }
+  
+  .serve-page-content p {
+    max-width: 720px;
+    margin: 30px 0 0;
+    color: rgba(255, 255, 255, 0.74);
+    font-size: 17px;
+    line-height: 1.85;
+  }
+  
+  /* HERO BOTTOM STRIP */
+  
+  .serve-page-hero-bottom {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 3;
+    width: 100%;
+    padding: 22px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.16);
+    background: rgba(7, 29, 59, 0.2);
+    backdrop-filter: blur(5px);
+  }
+  
+  .serve-page-hero-bottom .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+  }
+  
+  .serve-page-hero-bottom span {
+    color: var(--gold-light);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+  }
+  
+  .serve-page-hero-bottom strong {
+    color: rgba(255, 255, 255, 0.76);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+  }
+  
+  
+  /* =========================================================
+     INTRODUCTION
+     ========================================================= */
+  
+  .serve-introduction {
+    padding: 120px 0;
+    background: var(--off-white);
+  }
+  
+  .serve-intro-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    gap: 100px;
+    align-items: start;
+  }
+  
+  .serve-intro-grid h2 {
+    max-width: 600px;
+    margin: 18px 0 0;
+  }
+  
+  .serve-intro-copy {
+    max-width: 700px;
+  }
+  
+  .serve-intro-copy p {
+    margin: 0 0 24px;
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.9;
+  }
+  
+  .serve-intro-copy .serve-highlight {
+    margin-top: 34px;
+    padding-left: 24px;
+    border-left: 2px solid var(--gold);
+    color: var(--navy);
+    font-size: 18px;
+    font-weight: 600;
+  }
+  
+  .serve-intro-copy .serve-action-statement {
+    margin-top: 10px;
+  }
+  
+  .serve-intro-copy .serve-action-statement strong {
+    color: var(--navy);
+  }
+  
+  
+  /* =========================================================
+     SECURITY INSTITUTIONS
+     ========================================================= */
+  
+  .institutions-section {
+    padding: 120px 0;
+    background: #ffffff;
+  }
+  
+  .institutions-section .section-heading {
+    margin-bottom: 65px;
+  }
+  
+  .institutions-section .section-heading p {
+    max-width: 540px;
+  }
+  
+  .institution-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 26px;
+  }
+  
+  .institution-card {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    height: 100%;
+    background: var(--off-white);
+    overflow: hidden;
+    border: 1px solid rgba(7, 29, 59, 0.06);
+    transition:
+      transform 0.35s ease,
+      box-shadow 0.35s ease;
+  }
+  
+  .institution-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 22px 55px rgba(7, 29, 59, 0.1);
+  }
+  
+  .institution-image {
+    position: relative;
+    height: 330px;
+    overflow: hidden;
+  }
+  
+  .institution-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  
+  .institution-card:hover .institution-image img {
+    transform: scale(1.045);
+  }
+  
+  .institution-image > span {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 2;
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    background: var(--gold);
+    color: var(--navy);
+    font-size: 11px;
+    font-weight: 800;
+  }
+  
+  .institution-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 34px;
+  }
+  
+  .institution-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+  
+  .institution-meta > span {
+    color: var(--gold);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+  }
+  
+  .institution-meta small {
+    color: #8a939c;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  
+  .institution-content h3 {
+    margin: 0 0 14px;
+    color: var(--navy);
+    font-family: "Manrope", sans-serif;
+    font-size: 24px;
+    line-height: 1.2;
+  }
+  
+  .institution-content p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.8;
+  }
+  
+  .institution-link {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    gap: 8px;
+    margin-top: auto;
+    padding-top: 28px;
+    color: var(--navy);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    transition:
+      color 0.25s ease,
+      gap 0.25s ease;
+  }
+  
+  .institution-link:hover {
+    gap: 12px;
+    color: var(--gold);
+  }
+  
+  .institutions-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-top: 45px;
+    padding: 24px 26px;
+    border-left: 2px solid var(--gold);
+    background: var(--off-white);
+  }
+  
+  .institutions-note svg {
+    flex: 0 0 auto;
+    margin-top: 2px;
+    color: var(--gold);
+  }
+  
+  .institutions-note p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.75;
+  }
+  
+  .institutions-note strong {
+    color: var(--navy);
+  }
+  
+  
+  /* =========================================================
+     WIDER BENEFICIARY COMMUNITY
+     ========================================================= */
+  
+  .family-section {
+    padding: 120px 0;
+    background: var(--paper);
+  }
+  
+  .family-heading {
+    max-width: 850px;
+    margin-bottom: 65px;
+  }
+  
+  .family-heading h2 {
+    max-width: 850px;
+    margin-top: 18px;
+  }
+  
+  .family-heading p {
+    max-width: 690px;
+    margin: 24px 0 0;
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.85;
+  }
+  
+  .support-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-top: 1px solid var(--border);
+    border-left: 1px solid var(--border);
+  }
+  
+  .support-card {
+    min-height: 300px;
+    padding: 34px;
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: transparent;
+    transition:
+      background 0.3s ease,
+      transform 0.3s ease;
+  }
+  
+  .support-card:hover {
+    background: #ffffff;
+    transform: translateY(-4px);
+  }
+  
+  .support-icon {
+    display: grid;
+    place-items: center;
+    width: 52px;
+    height: 52px;
+    margin-bottom: 28px;
+    border: 1px solid rgba(199, 154, 59, 0.4);
+    color: var(--gold);
+  }
+  
+  .support-card > span {
+    display: block;
+    color: #9aa3ab;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+  }
+  
+  .support-card h3 {
+    margin: 32px 0 12px;
+    color: var(--navy);
+    font-family: "Manrope", sans-serif;
+    font-size: 20px;
+    line-height: 1.25;
+  }
+  
+  .support-card p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.75;
+  }
+  
+  
+  /* =========================================================
+     FALLEN HEROES
+     ========================================================= */
+  
+  .fallen-heroes-section {
+    position: relative;
+    min-height: 650px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background: var(--navy);
+    color: #ffffff;
+  }
+  
+  .fallen-heroes-image {
+    position: absolute;
+    inset: 0;
+    background:
+      url("/images/fallen-heroes.jpg") center / cover no-repeat;
+  }
+  
+  .fallen-heroes-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(
+        90deg,
+        rgba(7, 29, 59, 0.98) 0%,
+        rgba(7, 29, 59, 0.9) 35%,
+        rgba(7, 29, 59, 0.6) 70%,
+        rgba(7, 29, 59, 0.3) 100%
+      );
+  }
+  
+  .fallen-heroes-inner {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+  }
+  
+  .fallen-heroes-content {
+    max-width: 720px;
+    padding: 110px 0;
+  }
+  
+  .fallen-heroes-content h2 {
+    margin: 18px 0 26px;
+    color: #ffffff;
+    font-family: "Manrope", sans-serif;
+    font-size: clamp(38px, 4.2vw, 62px);
+    line-height: 1.03;
+    letter-spacing: -0.045em;
+  }
+  
+  .fallen-heroes-content p {
+    max-width: 690px;
+    margin: 0 0 20px;
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 15px;
+    line-height: 1.85;
+  }
+  
+  .fallen-heroes-content .button {
+    margin-top: 18px;
+  }
+  
+  
+  /* =========================================================
+     SCALE & DATA
+     ========================================================= */
+  
+  .serve-scale-section {
+    padding: 120px 0;
+    background: var(--off-white);
+  }
+  
+  .serve-scale-header {
+    max-width: 950px;
+    margin-bottom: 65px;
+  }
+  
+  .serve-scale-header h2 {
+    max-width: 850px;
+    margin: 18px 0 25px;
+  }
+  
+  .serve-scale-header h2 em {
+    font-style: normal;
+    color: var(--gold);
+  }
+  
+  .serve-scale-header > p {
+    max-width: 850px;
+    margin: 0;
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.85;
+  }
+  
+  .serve-data-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+    gap: 25px;
+  }
+  
+  .serve-data-card {
+    height: 100%;
+    padding: 38px;
+    background: #ffffff;
+    border: 1px solid var(--border);
+  }
+  
+  .serve-data-feature {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 410px;
+    background: var(--navy);
+    color: #ffffff;
+  }
+  
+  .serve-data-number {
+    display: block;
+    color: var(--gold-light);
+    font-family: "Manrope", sans-serif;
+    font-size: clamp(58px, 7vw, 100px);
+    font-weight: 700;
+    line-height: 0.95;
+    letter-spacing: -0.06em;
+  }
+  
+  .serve-data-feature h3 {
+    margin: 28px 0 14px;
+    color: #ffffff;
+    font-family: "Manrope", sans-serif;
+    font-size: 25px;
+  }
+  
+  .serve-data-feature p {
+    max-width: 620px;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.68);
+    font-size: 14px;
+    line-height: 1.8;
+  }
+  
+  .serve-data-feature small {
+    display: block;
+    margin-top: 22px;
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 11px;
+    line-height: 1.6;
+  }
+  
+  .serve-data-side {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+  
+  .serve-data-side .serve-data-card {
+    min-height: 192px;
+  }
+  
+  .serve-data-label {
+    display: block;
+    color: var(--gold);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+  }
+  
+  .serve-data-card strong {
+    display: block;
+    margin: 25px 0 12px;
+    color: var(--navy);
+    font-family: "Manrope", sans-serif;
+    font-size: 36px;
+    line-height: 1;
+  }
+  
+  .serve-data-card p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.7;
+  }
+  
+  .serve-data-context {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-top: 30px;
+    padding: 25px 28px;
+    border-left: 2px solid var(--gold);
+    background: #ffffff;
+  }
+  
+  .serve-data-context svg {
+    flex: 0 0 auto;
+    margin-top: 2px;
+    color: var(--gold);
+  }
+  
+  .serve-data-context p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.75;
+  }
+  
+  
+  /* =========================================================
+     HUMAN-CENTRED / VERIFICATION
+     ========================================================= */
+  
+  .human-centred-section {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    min-height: 650px;
+    background: var(--navy);
+  }
+  
+  .human-centred-image {
+    min-height: 650px;
+    background:
+      linear-gradient(
+        rgba(7, 29, 59, 0.08),
+        rgba(7, 29, 59, 0.08)
+      ),
+      url("/images/human-centred.jpg") center / cover no-repeat;
+  }
+  
+  .human-centred-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 100px 9%;
+    background: var(--navy);
+    color: #ffffff;
+  }
+  
+  .human-centred-content h2 {
+    max-width: 650px;
+    margin: 18px 0 24px;
+    color: #ffffff;
+    font-family: "Manrope", sans-serif;
+    font-size: clamp(38px, 4vw, 58px);
+    line-height: 1.05;
+    letter-spacing: -0.045em;
+  }
+  
+  .human-centred-content > p {
+    max-width: 610px;
+    margin: 0 0 20px;
+    color: rgba(255, 255, 255, 0.66);
+    font-size: 15px;
+    line-height: 1.85;
+  }
+  
+  .human-principles {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-top: 28px;
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+  }
+  
+  .human-principles div {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 68px;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 13px;
+  }
+  
+  .human-principles div:nth-child(odd) {
+    padding-right: 20px;
+  }
+  
+  .human-principles div:nth-child(even) {
+    padding-left: 20px;
+    border-left: 1px solid rgba(255, 255, 255, 0.14);
+  }
+  
+  .human-principles svg {
+    flex: 0 0 auto;
+    color: var(--gold-light);
+  }
+  
+  
+  /* =========================================================
+     FINAL CTA
+     ========================================================= */
+  
+  .serve-cta {
+    padding: 105px 0;
+    background: var(--gold);
+  }
+  
+  .serve-cta-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 80px;
+  }
+  
+  .serve-cta-inner > div:first-child {
+    max-width: 760px;
+  }
+  
+  .serve-cta h2 {
+    max-width: 760px;
+    margin: 18px 0 0;
+    color: var(--navy);
+  }
+  
+  .serve-cta p {
+    max-width: 700px;
+    margin: 22px 0 0;
+    color: rgba(7, 29, 59, 0.68);
+    font-size: 15px;
+    line-height: 1.8;
+  }
+  
+  .serve-cta-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-width: 215px;
+  }
+  
+  .serve-cta-actions .button {
+    justify-content: center;
+  }
+  
+  .serve-cta .button-outline {
+    color: var(--navy);
+    border-color: rgba(7, 29, 59, 0.32);
+  }
+  
+  .serve-cta .button-outline:hover {
+    color: var(--navy);
+    border-color: var(--navy);
+  }
+  
+  
+  /* =========================================================
+     TABLET
+     ========================================================= */
+  
+  @media (max-width: 1000px) {
+    .serve-intro-grid {
+      grid-template-columns: 1fr;
+      gap: 50px;
+    }
+  
+    .institution-grid {
+      grid-template-columns: 1fr;
+    }
+  
+    .support-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  
+    .serve-data-grid {
+      grid-template-columns: 1fr;
+    }
+  
+    .serve-data-feature {
+      min-height: 350px;
+    }
+  
+    .fallen-heroes-content {
+      max-width: 650px;
+    }
+  
+    .human-centred-section {
+      grid-template-columns: 1fr;
+    }
+  
+    .human-centred-image {
+      min-height: 500px;
+    }
+  
+    .serve-cta-inner {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 45px;
+    }
+  
+    .serve-cta-actions {
+      flex-direction: row;
+      width: auto;
+    }
+  }
+  
+  
+  /* =========================================================
+     MOBILE
+     ========================================================= */
+  
+  @media (max-width: 650px) {
+    .serve-page-hero {
+      min-height: 650px;
+      padding: 130px 0 105px;
+    }
+  
+    .serve-page-content h1 {
+      font-size: clamp(43px, 13vw, 62px);
+      line-height: 0.98;
+    }
+  
+    .serve-page-content p {
+      margin-top: 24px;
+      font-size: 15px;
+      line-height: 1.75;
+    }
+  
+    .serve-page-hero-bottom {
+      padding: 18px 0;
+    }
+  
+    .serve-page-hero-bottom .container {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 7px;
+    }
+  
+    .serve-page-hero-bottom strong {
+      font-size: 9px;
+    }
+  
+    .serve-introduction,
+    .institutions-section,
+    .family-section,
+    .serve-scale-section {
+      padding: 80px 0;
+    }
+  
+    .serve-intro-grid {
+      gap: 38px;
+    }
+  
+    .serve-intro-copy .serve-highlight {
+      padding-left: 18px;
+      font-size: 16px;
+    }
+  
+    .institutions-section .section-heading {
+      margin-bottom: 45px;
+    }
+  
+    .institution-grid {
+      gap: 18px;
+    }
+  
+    .institution-image {
+      height: 245px;
+    }
+  
+    .institution-content {
+      padding: 27px;
+    }
+  
+    .institution-content h3 {
+      font-size: 21px;
+    }
+  
+    .institution-content p {
+      font-size: 13px;
+    }
+  
+    .support-grid {
+      grid-template-columns: 1fr;
+    }
+  
+    .support-card {
+      min-height: 250px;
+      padding: 28px;
+    }
+  
+    .fallen-heroes-section {
+      min-height: 650px;
+    }
+  
+    .fallen-heroes-image {
+      background-position: center;
+    }
+  
+    .fallen-heroes-overlay {
+      background:
+        linear-gradient(
+          180deg,
+          rgba(7, 29, 59, 0.7),
+          rgba(7, 29, 59, 0.97)
+        );
+    }
+  
+    .fallen-heroes-content {
+      padding: 85px 0;
+    }
+  
+    .fallen-heroes-content h2 {
+      font-size: 39px;
+    }
+  
+    .fallen-heroes-content p {
+      font-size: 14px;
+    }
+  
+    .serve-data-grid {
+      gap: 18px;
+    }
+  
+    .serve-data-feature {
+      min-height: 330px;
+      padding: 30px;
+    }
+  
+    .serve-data-number {
+      font-size: 65px;
+    }
+  
+    .serve-data-card {
+      padding: 30px;
+    }
+  
+    .serve-data-side {
+      gap: 18px;
+    }
+  
+    .serve-data-context {
+      padding: 20px;
+    }
+  
+    .human-centred-image {
+      min-height: 390px;
+    }
+  
+    .human-centred-content {
+      padding: 75px 24px;
+    }
+  
+    .human-centred-content h2 {
+      font-size: 39px;
+    }
+  
+    .human-principles {
+      grid-template-columns: 1fr;
+    }
+  
+    .human-principles div:nth-child(even) {
+      padding-left: 0;
+      border-left: 0;
+    }
+  
+    .human-principles div:nth-child(odd) {
+      padding-right: 0;
+    }
+  
+    .serve-cta {
+      padding: 75px 0;
+    }
+  
+    .serve-cta-actions {
+      width: 100%;
+      flex-direction: column;
+    }
+  
+    .serve-cta-actions .button {
+      width: 100%;
+    }
+  }
+
+  /* =========================================
+   WHO WE SERVE — FALLEN HEROES SPACING FIX
+========================================= */
+
+.fallen-heroes-inner {
+  width: min(1180px, calc(100% - 48px));
+  margin: 0 auto;
+}
+
+@media (max-width: 800px) {
+  .fallen-heroes-inner {
+    width: min(100% - 34px, 650px);
+  }
+}
+
+@media (max-width: 520px) {
+  .fallen-heroes-inner {
+    width: calc(100% - 28px);
+  }
+}
