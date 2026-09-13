@@ -3,152 +3,104 @@ import ScrollReveal from "../components/ScrollReveal";
 import {
   ArrowRight,
   HeartPulse,
-  BriefcaseBusiness,
   HandHeart,
-  Scale,
-  WalletCards,
-  GraduationCap,
+  BriefcaseBusiness,
   UsersRound,
-  Landmark,
+  ShieldCheck,
+  Award,
   CheckCircle2,
 } from "lucide-react";
 
-const programs = [
+const rspeiPillars = [
   {
     number: "01",
-    icon: HeartPulse,
-    title: "Healthcare & Wellness",
-    short:
-      "Improving access to healthcare, preventive services and psychosocial support.",
-    description:
-      "Horizon Humanity Care seeks to help retired personnel and their families navigate healthcare challenges through practical support, health awareness and strategic partnerships.",
-    activities: [
-      "Medical outreaches and health screenings",
-      "Healthcare access and referral support",
-      "Health insurance advocacy",
-      "Psychosocial and wellbeing support",
-      "Partnerships with healthcare providers",
-    ],
-    image: "/images/program-healthcare.jpg",
-  },
-  {
-    number: "02",
-    icon: BriefcaseBusiness,
-    title: "Economic Empowerment",
-    short:
-      "Creating pathways for sustainable income, enterprise and continued contribution.",
-    description:
-      "Retirement should not necessarily mean the end of productive activity. We support initiatives that help retirees develop practical skills, explore enterprise opportunities and strengthen financial independence.",
-    activities: [
-      "Entrepreneurship training",
-      "Small business support",
-      "Cooperative opportunities",
-      "Agricultural and livelihood projects",
-      "Enterprise development",
-    ],
-    image: "/images/program-economic.jpg",
-  },
-  {
-    number: "03",
     icon: HandHeart,
-    title: "Welfare & Humanitarian Support",
+    title: "Dignity & Welfare",
     short:
-      "Providing practical assistance to retirees experiencing vulnerability or hardship.",
+      "Practical support for retirees and families experiencing vulnerability or hardship.",
     description:
-      "For retirees facing difficult circumstances, timely assistance can make a meaningful difference. Our welfare work focuses on dignity, responsiveness and practical humanitarian support.",
+      "HHC provides needs-based welfare assistance designed to protect dignity and respond to immediate challenges faced by retired security personnel and their families.",
     activities: [
       "Emergency assistance",
-      "Food support",
-      "Clothing and essential supplies",
-      "Housing assistance",
-      "Relief for vulnerable retirees",
+      "Food and essential household supplies",
+      "Housing repairs",
+      "Welfare referrals",
     ],
     image: "/images/program-welfare.jpg",
   },
+
+  {
+    number: "02",
+    icon: HeartPulse,
+    title: "Health & Wellness",
+    short:
+      "Improving access to healthcare, prevention, referrals and psychosocial wellbeing.",
+    description:
+      "HHC supports healthcare access through medical outreaches, health screening, referrals, medication support, health education and psychosocial wellbeing initiatives.",
+    activities: [
+      "Medical outreaches",
+      "Health screening",
+      "Healthcare referrals",
+      "Medication support",
+      "Psychosocial wellbeing initiatives",
+    ],
+    image: "/images/program-healthcare.jpg",
+  },
+
+  {
+    number: "03",
+    icon: BriefcaseBusiness,
+    title: "Economic Resilience",
+    short:
+      "Creating pathways for sustainable income, enterprise and continued contribution.",
+    description:
+      "HHC supports retirees with opportunities to strengthen financial independence, develop practical skills and explore enterprise, livelihood and second-career pathways.",
+    activities: [
+      "Entrepreneurship training",
+      "Cooperative development",
+      "Financial literacy",
+      "Livelihood support",
+      "Business guidance",
+      "Second-career pathways",
+    ],
+    image: "/images/program-economic.jpg",
+  },
+
   {
     number: "04",
-    icon: Scale,
-    title: "Legal & Pension Support",
-    short:
-      "Helping retirees better understand their rights, documentation and retirement benefits.",
-    description:
-      "Navigating pensions, gratuities and administrative processes can be challenging. Horizon seeks to connect beneficiaries with appropriate guidance and support.",
-    activities: [
-      "Pension guidance",
-      "Gratuity and benefit information",
-      "Documentation support",
-      "Legal rights awareness",
-      "Access to relevant government services",
-    ],
-    image: "/images/program-legal.jpg",
-  },
-  {
-    number: "05",
-    icon: WalletCards,
-    title: "Financial Literacy",
-    short:
-      "Strengthening financial decision-making before and after retirement.",
-    description:
-      "Financial literacy can help retirees make informed decisions around budgeting, savings, investments and long-term financial wellbeing.",
-    activities: [
-      "Retirement planning",
-      "Budgeting education",
-      "Investment awareness",
-      "Pension management education",
-      "Wealth preservation",
-    ],
-    image: "/images/program-finance.jpg",
-  },
-  {
-    number: "06",
-    icon: GraduationCap,
-    title: "Capacity Building",
-    short:
-      "Supporting lifelong learning, digital literacy, vocational skills and leadership.",
-    description:
-      "Retirement can open new opportunities for learning and contribution. Our capacity-building initiatives are designed to help beneficiaries acquire relevant knowledge and practical skills.",
-    activities: [
-      "Digital literacy",
-      "Vocational training",
-      "Leadership development",
-      "Mentoring",
-      "Lifelong learning",
-    ],
-    image: "/images/program-capacity.jpg",
-  },
-  {
-    number: "07",
     icon: UsersRound,
-    title: "Family & Community Development",
+    title: "Family & Community",
     short:
-      "Strengthening families, social networks and community connections.",
+      "Strengthening families, dependants and the wider service community.",
     description:
-      "The impact of service extends beyond the individual. We recognize spouses, widows, dependents and communities as important parts of the support ecosystem.",
+      "Service affects entire households. HHC therefore supports spouses, widows, widowers, children and dependants while strengthening community resilience and inclusion.",
     activities: [
-      "Family support",
-      "Support for widows and dependents",
+      "Educational assistance",
       "Youth mentorship",
-      "Community engagement",
-      "Social networking initiatives",
+      "Support for spouses",
+      "Support for widows and widowers",
+      "Family welfare",
+      "Community resilience initiatives",
     ],
     image: "/images/program-family.jpg",
   },
+
   {
-    number: "08",
-    icon: Landmark,
-    title: "Advocacy & Policy",
+    number: "05",
+    icon: ShieldCheck,
+    title: "Honour & Readiness",
     short:
-      "Promoting stronger systems, policies and social protection for retired personnel.",
+      "Preparing personnel for retirement while ensuring service continues to be recognised.",
     description:
-      "Sustainable improvement requires more than individual assistance. Horizon seeks constructive engagement with stakeholders to promote stronger retirement protection and social support systems.",
+      "HHC promotes retirement readiness and public recognition through awareness, pension information, financial literacy, documentation guidance and initiatives that honour the contribution of security personnel.",
     activities: [
-      "Policy engagement",
-      "Stakeholder dialogue",
-      "Public awareness",
-      "Research and evidence gathering",
-      "Advocacy for stronger social protection",
+      "Pre-retirement awareness",
+      "Pension information",
+      "Financial literacy",
+      "Documentation guidance",
+      "Public recognition",
     ],
-    image: "/images/program-advocacy.jpg",
+    image: "/images/program-capacity.jpg",
   },
 ];
 
@@ -181,10 +133,17 @@ export default function ProgramsPage() {
           <ScrollReveal delay={220}>
             <p>
               Our programmes respond to the realities of retirement through
-              healthcare, welfare, economic empowerment, capacity building,
-              advocacy and stronger community support.
+              healthcare, welfare, economic resilience, family support,
+              retirement readiness and public recognition.
             </p>
           </ScrollReveal>
+        </div>
+
+        <div className="programs-hero-bottom">
+          <div className="container">
+            <span>HHC PROGRAMME FRAMEWORK</span>
+            <strong>SUPPORTING LIFE BEYOND SERVICE.</strong>
+          </div>
         </div>
       </section>
 
@@ -198,9 +157,7 @@ export default function ProgramsPage() {
             <div>
               <span className="kicker">OUR PROGRAMME FRAMEWORK</span>
 
-              <h2>
-                Support that addresses the whole retirement journey.
-              </h2>
+              <h2>Supporting the whole retirement journey.</h2>
             </div>
           </ScrollReveal>
 
@@ -208,15 +165,15 @@ export default function ProgramsPage() {
             <div>
               <p>
                 Horizon Humanity Care takes a holistic approach to retirement
-                support. We recognize that wellbeing is connected to health,
+                support. We recognise that wellbeing is connected to health,
                 financial security, family relationships, social inclusion,
-                legal rights and continued purpose.
+                retirement readiness and continued purpose.
               </p>
 
               <p>
-                Our programme areas are therefore designed to complement one
-                another while allowing partnerships and interventions to
-                respond to specific community needs.
+                Our flagship programme, the Retired Security Personnel Support &
+                Empowerment Initiative (RSPEI), brings these priorities together
+                through five interconnected pillars.
               </p>
             </div>
           </ScrollReveal>
@@ -224,71 +181,128 @@ export default function ProgramsPage() {
       </section>
 
       {/* =========================================
-          PROGRAMME AREAS
+          RSPEI
       ========================================= */}
 
-      <section className="programme-directory">
+      <section className="rspei-section">
         <div className="container">
           <ScrollReveal>
-            <div className="programme-directory-heading">
-              <span className="kicker">EIGHT AREAS OF ACTION</span>
+            <div className="rspei-heading">
+              <div>
+                <span className="kicker">FLAGSHIP PROGRAMME</span>
 
-              <h2>
-                Our programmes are built around dignity, opportunity and
-                wellbeing.
-              </h2>
+                <h2>
+                  Retired Security Personnel Support & Empowerment Initiative
+                </h2>
+              </div>
+
+              <p>
+                RSPEI brings welfare, healthcare, economic resilience, family
+                support and retirement readiness together into a coordinated
+                framework for retired security personnel and their families.
+              </p>
             </div>
           </ScrollReveal>
 
-          <div className="programme-list">
-            {programs.map((program, index) => {
-              const Icon = program.icon;
+          <div className="rspei-feature">
+            <ScrollReveal direction="left">
+              <div className="rspei-feature-image">
+                <img
+                  src="/images/hhc-impact.jpg"
+                  alt="Retired security personnel and community members"
+                />
+
+                <div className="rspei-feature-overlay" />
+
+                <div className="rspei-feature-caption">
+                  <span>RSPEI</span>
+
+                  <strong>
+                    Supporting life
+                    <br />
+                    beyond service.
+                  </strong>
+                </div>
+              </div>
+            </ScrollReveal>
+
+            <ScrollReveal direction="right" delay={120}>
+              <div className="rspei-feature-content">
+                <span className="programme-number">01</span>
+
+                <span className="programme-label">
+                  RETIRED SECURITY PERSONNEL SUPPORT & EMPOWERMENT INITIATIVE
+                </span>
+
+                <h3>
+                  A coordinated approach to dignity, care and opportunity.
+                </h3>
+
+                <p>
+                  RSPEI is HHC&apos;s flagship programme, bringing welfare,
+                  healthcare, economic resilience, family support and retirement
+                  readiness together into a coordinated framework.
+                </p>
+
+                <div className="rspei-statement">
+                  <ShieldCheck size={20} />
+
+                  <span>
+                    We believe service should never become invisible when the
+                    uniform comes off.
+                  </span>
+                </div>
+              </div>
+            </ScrollReveal>
+          </div>
+
+          {/* =========================================
+              FIVE PILLARS
+          ========================================= */}
+
+          <div className="rspei-pillars-heading">
+            <ScrollReveal>
+              <span className="kicker">THE FIVE PILLARS</span>
+
+              <h3>Five connected areas of support.</h3>
+            </ScrollReveal>
+          </div>
+
+          <div className="rspei-pillars">
+            {rspeiPillars.map((pillar, index) => {
+              const Icon = pillar.icon;
 
               return (
-                <ScrollReveal
-                  key={program.number}
-                  delay={index * 60}
-                >
-                  <article className="programme-detail">
-                    <div className="programme-detail-image">
-                      <img
-                        src={program.image}
-                        alt={program.title}
-                      />
+                <ScrollReveal key={pillar.number} delay={index * 70}>
+                  <article className="rspei-pillar">
+                    <div className="rspei-pillar-image">
+                      <img src={pillar.image} alt={pillar.title} />
 
-                      <span className="programme-number">
-                        {program.number}
-                      </span>
+                      <span>{pillar.number}</span>
                     </div>
 
-                    <div className="programme-detail-content">
-                      <div className="programme-icon-large">
-                        <Icon
-                          size={27}
-                          strokeWidth={1.5}
-                        />
+                    <div className="rspei-pillar-content">
+                      <div className="rspei-pillar-icon">
+                        <Icon size={25} strokeWidth={1.5} />
                       </div>
 
                       <span className="programme-label">
-                        PROGRAMME {program.number}
+                        PILLAR {pillar.number}
                       </span>
 
-                      <h3>{program.title}</h3>
+                      <h4>{pillar.title}</h4>
 
-                      <p className="programme-short">
-                        {program.short}
-                      </p>
+                      <p className="pillar-short">{pillar.short}</p>
 
-                      <p className="programme-description">
-                        {program.description}
-                      </p>
+                      <p className="pillar-description">{pillar.description}</p>
 
-                      <div className="programme-activities">
-                        <span>KEY AREAS</span>
+                      <div className="pillar-activities">
+                        <span>FOCUS AREAS</span>
 
-                        {program.activities.map((activity) => (
+                        {pillar.activities.map((activity) => (
                           <div key={activity}>
-                            <CheckCircle2 size={16} />
+                            <CheckCircle2 size={15} />
+
                             <p>{activity}</p>
                           </div>
                         ))}
@@ -303,25 +317,112 @@ export default function ProgramsPage() {
       </section>
 
       {/* =========================================
-          DELIVERY PRINCIPLES
+          USSA
+      ========================================= */}
+
+      <section className="ussa-section">
+        <div className="container">
+          <div className="ussa-grid">
+            <ScrollReveal direction="left">
+              <div className="ussa-image">
+                <img
+                  src="/images/program-advocacy.jpg"
+                  alt="Security service recognition and storytelling"
+                />
+
+                <div className="ussa-overlay" />
+
+                <div className="ussa-image-content">
+                  <Award size={30} />
+
+                  <span>UNSUNG SHIELD</span>
+
+                  <strong>
+                    Honour is part
+                    <br />
+                    of the work.
+                  </strong>
+                </div>
+              </div>
+            </ScrollReveal>
+
+            <ScrollReveal direction="right" delay={120}>
+              <div className="ussa-content">
+                <span className="kicker">RECOGNITION & STORYTELLING</span>
+
+                <span className="ussa-number">02</span>
+
+                <h2>Unsung Shield Awards & Media Initiative</h2>
+
+                <p className="ussa-lead">
+                  USSA is HHC&apos;s recognition and storytelling platform
+                  dedicated to honouring active personnel, veterans and
+                  families.
+                </p>
+
+                <p>
+                  Through interviews, storytelling, media features, oral history
+                  archives, public campaigns and recognition events, USSA helps
+                  ensure that the contribution of those who served is seen,
+                  remembered and valued.
+                </p>
+
+                <div className="ussa-features">
+                  <div>
+                    <CheckCircle2 size={17} />
+                    <span>Interviews & storytelling</span>
+                  </div>
+
+                  <div>
+                    <CheckCircle2 size={17} />
+                    <span>Media features</span>
+                  </div>
+
+                  <div>
+                    <CheckCircle2 size={17} />
+                    <span>Oral history archives</span>
+                  </div>
+
+                  <div>
+                    <CheckCircle2 size={17} />
+                    <span>Public campaigns</span>
+                  </div>
+
+                  <div>
+                    <CheckCircle2 size={17} />
+                    <span>Recognition events</span>
+                  </div>
+                </div>
+
+                <div className="ussa-quote">
+                  <span>
+                    &ldquo;Honour is not an accessory to our work; it is part of
+                    the work.&rdquo;
+                  </span>
+                </div>
+              </div>
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
+
+      {/* =========================================
+          HOW WE DELIVER
       ========================================= */}
 
       <section className="section delivery-section">
         <div className="container">
           <ScrollReveal>
             <div className="center-heading">
-              <span className="kicker">
-                HOW WE DELIVER
-              </span>
+              <span className="kicker">HOW WE DELIVER</span>
 
               <h2>
                 Programmes designed around people, partnerships and results.
               </h2>
 
               <p>
-                Our work is intended to be practical, respectful,
-                collaborative and responsive to the needs of the communities
-                we serve.
+                Our work is practical, respectful, collaborative and responsive
+                to the needs of the communities we serve.
               </p>
             </div>
           </ScrollReveal>
@@ -330,10 +431,12 @@ export default function ProgramsPage() {
             <ScrollReveal delay={0}>
               <div className="delivery-card">
                 <span>01</span>
+
                 <h3>Needs-led</h3>
+
                 <p>
-                  We seek to understand the actual circumstances and
-                  priorities of beneficiaries before designing interventions.
+                  We seek to understand the actual circumstances and priorities
+                  of beneficiaries before designing interventions.
                 </p>
               </div>
             </ScrollReveal>
@@ -341,10 +444,12 @@ export default function ProgramsPage() {
             <ScrollReveal delay={100}>
               <div className="delivery-card">
                 <span>02</span>
+
                 <h3>Partnership-driven</h3>
+
                 <p>
                   We collaborate with institutions, professionals and
-                  organizations whose expertise can strengthen our impact.
+                  organisations whose expertise can strengthen our impact.
                 </p>
               </div>
             </ScrollReveal>
@@ -352,10 +457,12 @@ export default function ProgramsPage() {
             <ScrollReveal delay={200}>
               <div className="delivery-card">
                 <span>03</span>
+
                 <h3>Dignity-centred</h3>
+
                 <p>
-                  Assistance should strengthen independence and respect,
-                  rather than create unnecessary dependency.
+                  Assistance should strengthen independence and respect, rather
+                  than create unnecessary dependency.
                 </p>
               </div>
             </ScrollReveal>
@@ -363,10 +470,12 @@ export default function ProgramsPage() {
             <ScrollReveal delay={300}>
               <div className="delivery-card">
                 <span>04</span>
+
                 <h3>Impact-focused</h3>
+
                 <p>
-                  We seek measurable learning and meaningful outcomes from
-                  the programmes we develop and support.
+                  We seek measurable learning and meaningful outcomes from the
+                  programmes we develop and support.
                 </p>
               </div>
             </ScrollReveal>
@@ -382,36 +491,32 @@ export default function ProgramsPage() {
         <section className="programmes-cta">
           <div className="container programmes-cta-grid">
             <div>
-              <span className="kicker light-kicker">
-                PARTNER WITH HORIZON
-              </span>
+              <span className="kicker light-kicker">PARTNER WITH HORIZON</span>
 
               <h2>
-                Your expertise, resources or network can help extend our
-                reach.
+                Your expertise, resources or network can help extend our reach.
               </h2>
 
               <p>
-                We welcome collaboration with government institutions,
-                security agencies, healthcare providers, pension
-                administrators, businesses, development organizations,
-                foundations and community partners.
+                We welcome collaboration with government institutions, security
+                agencies, healthcare providers, pension administrators,
+                businesses, development organisations, foundations and community
+                partners.
               </p>
             </div>
 
             <div className="programmes-cta-actions">
-              <Link
-                href="/partnerships"
-                className="button button-gold"
-              >
+              <Link href="/partnerships" className="button button-gold">
                 Explore Partnerships
                 <ArrowRight size={18} />
               </Link>
 
-              <Link
-                href="/contact"
-                className="button button-outline"
-              >
+              <Link href="/donate" className="button button-outline">
+                Donate Now
+                <ArrowRight size={18} />
+              </Link>
+
+              <Link href="/contact" className="button button-outline">
                 Contact Us
               </Link>
             </div>
