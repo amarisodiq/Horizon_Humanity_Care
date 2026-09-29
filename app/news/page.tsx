@@ -43,20 +43,13 @@ const stories = [
     link: "https://www.facebook.com/share/p/1Kin2prCAV/",
   },
   {
-    category: "PROGRAMME UPDATE",
-    date: "COMING SOON",
-    title: "Building stronger pathways for life after service",
-    text: "Follow Horizon Humanity Care as we develop programmes focused on wellbeing, opportunity and continued purpose for retired personnel.",
-    image: "/images/news-programme.jpg",
-    link: "/contact",
-  },
-  {
-    category: "COMMUNITY",
-    date: "COMING SOON",
-    title: "Connecting retired personnel with new opportunities",
-    text: "Our community-focused work is designed to strengthen social connection, access to information and meaningful participation.",
-    image: "/images/news-community.jpg",
-    link: "/contact",
+    category: "STORIES & PERSPECTIVES",
+    date: "25 AUGUST 2026",
+    title: "Retirement Is Not the End. It Is a New Beginning.",
+    text:
+      "A message of encouragement and renewed purpose for security personnel approaching or transitioning into retirement. Retirement marks a new chapter, with opportunities for continued contribution, dignity and meaningful engagement.",
+    image: "/images/news-retirement-new-beginning.jpg",
+    link: "https://www.facebook.com/share/v/1BuHEcdbTy/",
   },
 ];
 
