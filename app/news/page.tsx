@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import ScrollReveal from "../components/ScrollReveal";
 import {
@@ -7,29 +10,53 @@ import {
   Newspaper,
   Mic2,
   BookOpen,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 
 const stories = [
   {
+    category: "HEALTH & WELLNESS",
+    date: "3RD OCTOBER 2026",
+    title:
+      "Horizon Humanity Care Announces Free Medical Outreach for Security Personnel & Families in Port Harcourt",
+    text: "Horizon Humanity Care has announced a free medical outreach focused on security personnel, retired personnel and families in Port Harcourt, reinforcing its commitment to healthcare, dignity and community support.",
+    image: "/images/news-medical-outreach.jpg",
+    link: "https://swiftreporters.com/horizon-humanity-care-announces-free-medical-outreach-for-security-personnel-families-in-port-harcourt/",
+  },
+  {
+    category: "PARTNERSHIPS & ENGAGEMENT",
+    date: "21 SEPTEMBER 2026",
+    title:
+      "HHC Management Team Pays Courtesy Visit to Former Minister of Youth Development",
+    text: "The Horizon Humanity Care (HHC) Management Team paid a courtesy visit to former Minister of Youth Development, Dr. Jamila Bio Ibrahim, as part of its ongoing efforts to promote the welfare, recognition and support of Nigeria's heroes and dedicated service personnel.",
+    image: "/images/news-courtesy-visit.jpg",
+    link: "https://www.facebook.com/share/p/1DW8LrvaDD/",
+  },
+  {
+    category: "PARTNERSHIPS & ENGAGEMENT",
+    date: "16 SEPTEMBER 2026",
+    title:
+      "Horizon Humanity Care Meets with the Inspector General of Police in Abuja",
+    text: "The Horizon Humanity Care Foundation (HHC) Board and Management team met with the Inspector General of Police, IGP Disu, at Force Headquarters in Abuja to present the organisation's mission and discuss opportunities to strengthen support for retired security personnel and families of fallen heroes.",
+    image: "/images/news-igp-meeting.jpg",
+    link: "https://www.facebook.com/share/p/1Kin2prCAV/",
+  },
+  {
     category: "PROGRAMME UPDATE",
-    date: "Coming Soon",
+    date: "COMING SOON",
     title: "Building stronger pathways for life after service",
     text: "Follow Horizon Humanity Care as we develop programmes focused on wellbeing, opportunity and continued purpose for retired personnel.",
     image: "/images/news-programme.jpg",
+    link: "/contact",
   },
   {
     category: "COMMUNITY",
-    date: "Coming Soon",
+    date: "COMING SOON",
     title: "Connecting retired personnel with new opportunities",
     text: "Our community-focused work is designed to strengthen social connection, access to information and meaningful participation.",
     image: "/images/news-community.jpg",
-  },
-  {
-    category: "HEALTH & WELLNESS",
-    date: "Coming Soon",
-    title: "Promoting healthier and more informed retirement",
-    text: "Healthcare access, prevention and wellbeing remain important parts of a dignified transition into retirement.",
-    image: "/images/news-health.jpg",
+    link: "/contact",
   },
 ];
 
@@ -57,6 +84,46 @@ const contentTypes = [
 ];
 
 export default function NewsPage() {
+  const storiesRef = useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+
+  const updateScrollButtons = () => {
+    const container = storiesRef.current;
+
+    if (!container) return;
+
+    const maxScrollLeft = container.scrollWidth - container.clientWidth;
+
+    setCanScrollLeft(container.scrollLeft > 5);
+    setCanScrollRight(container.scrollLeft < maxScrollLeft - 5);
+  };
+
+  useEffect(() => {
+    updateScrollButtons();
+
+    const container = storiesRef.current;
+
+    if (!container) return;
+
+    container.addEventListener("scroll", updateScrollButtons);
+    window.addEventListener("resize", updateScrollButtons);
+
+    return () => {
+      container.removeEventListener("scroll", updateScrollButtons);
+      window.removeEventListener("resize", updateScrollButtons);
+    };
+  }, [stories.length]);
+
+  const scrollStories = (direction: "left" | "right") => {
+    if (!storiesRef.current) return;
+
+    storiesRef.current.scrollBy({
+      left: direction === "right" ? 408 : -408,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <main>
       {/* HERO */}
@@ -68,7 +135,7 @@ export default function NewsPage() {
           <ScrollReveal>
             <span className="eyebrow">
               <span />
-              INSIGHTS & UPDATES
+              INSIGHTS &amp; UPDATES
             </span>
           </ScrollReveal>
 
@@ -98,9 +165,7 @@ export default function NewsPage() {
             <div>
               <span className="kicker">FROM HORIZON</span>
 
-              <h2>
-                Keeping stakeholders informed and connected.
-              </h2>
+              <h2>Keeping stakeholders informed and connected.</h2>
             </div>
           </ScrollReveal>
 
@@ -123,13 +188,13 @@ export default function NewsPage() {
         </div>
       </section>
 
-      {/* FEATURED */}
+      {/* FEATURED NEWS */}
 
       <section className="featured-story">
         <div className="container">
           <ScrollReveal>
             <div className="featured-story-label">
-              <span className="kicker">FEATURED</span>
+              <span className="kicker">LATEST NEWS</span>
             </div>
           </ScrollReveal>
 
@@ -137,39 +202,48 @@ export default function NewsPage() {
             <article className="featured-story-card">
               <div className="featured-story-image">
                 <img
-                  src="/images/news-featured.jpg"
-                  alt="Horizon Humanity Care community engagement"
+                  src="/images/news-medical-outreach.jpg"
+                  alt="Horizon Humanity Care medical outreach"
                 />
 
-                <span>FEATURED STORY</span>
+                <span>HEALTH &amp; WELLNESS</span>
               </div>
 
               <div className="featured-story-content">
-                <span className="article-category">
-                  ORGANISATIONAL PERSPECTIVE
-                </span>
+                <span className="article-category">COMMUNITY HEALTH</span>
 
                 <h2>
-                  A new horizon for those who served.
+                  Horizon Humanity Care Announces Free Medical Outreach for
+                  Security Personnel &amp; Families in Port Harcourt.
                 </h2>
 
                 <p>
-                  Horizon Humanity Care is built around a simple conviction:
-                  a lifetime of service deserves a future where dignity,
-                  wellbeing and opportunity remain possible.
+                  Horizon Humanity Care has announced a free medical outreach
+                  focused on security personnel, retired personnel and families
+                  in Port Harcourt.
                 </p>
 
                 <p>
-                  Our work brings together welfare, healthcare, economic
-                  empowerment, skills development, advocacy and partnership
-                  around the realities of retirement.
+                  The initiative reflects HHC&apos;s commitment to improving
+                  healthcare access, supporting vulnerable service communities
+                  and promoting dignity and wellbeing beyond active service.
                 </p>
 
                 <div className="article-meta">
                   <span>HORIZON HUMANITY CARE</span>
                   <span>•</span>
-                  <span>ORGANISATIONAL STORY</span>
+                  <span>3RD OCTOBER 2026</span>
                 </div>
+
+                <a
+                  href="https://swiftreporters.com/horizon-humanity-care-announces-free-medical-outreach-for-security-personnel-families-in-port-harcourt/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-link"
+                >
+                  Read Full Story
+                  <ArrowRight size={16} />
+                </a>
               </div>
             </article>
           </ScrollReveal>
@@ -185,50 +259,79 @@ export default function NewsPage() {
               <div>
                 <span className="kicker">LATEST</span>
 
-                <h2>
-                  Updates from Horizon.
-                </h2>
+                <h2>Updates from Horizon.</h2>
               </div>
 
               <p>
-                This section will grow as Horizon launches programmes,
-                develops partnerships and engages communities.
+                This section will grow as Horizon launches programmes, develops
+                partnerships and engages communities.
               </p>
             </div>
           </ScrollReveal>
 
-          <div className="stories-grid">
-            {stories.map((story, index) => (
-              <ScrollReveal
-                key={story.title}
-                delay={index * 100}
-              >
-                <article className="story-card">
-                  <div className="story-image">
-                    <img
-                      src={story.image}
-                      alt={story.title}
-                    />
-                  </div>
+          {/* NEWS CAROUSEL */}
 
-                  <div className="story-content">
-                    <div className="story-meta">
-                      <span>{story.category}</span>
-                      <span>{story.date}</span>
+          <div className="stories-carousel">
+            {canScrollLeft && (
+              <button
+                type="button"
+                className="news-scroll-arrow news-scroll-arrow-left"
+                onClick={() => scrollStories("left")}
+                aria-label="Previous news stories"
+              >
+                <ChevronLeft size={20} strokeWidth={1.8} />
+              </button>
+            )}
+
+            <div className="stories-grid" ref={storiesRef}>
+              {stories.map((story, index) => (
+                <ScrollReveal key={story.title} delay={index * 100}>
+                  <article className="story-card">
+                    <div className="story-image">
+                      <img src={story.image} alt={story.title} />
                     </div>
 
-                    <h3>{story.title}</h3>
+                    <div className="story-content">
+                      <div className="story-meta">
+                        <span>{story.category}</span>
+                        <span>{story.date}</span>
+                      </div>
 
-                    <p>{story.text}</p>
+                      <h3>{story.title}</h3>
 
-                    <Link href="/contact">
-                      Stay Connected
-                      <ArrowRight size={15} />
-                    </Link>
-                  </div>
-                </article>
-              </ScrollReveal>
-            ))}
+                      <p>{story.text}</p>
+
+                      {story.link.startsWith("http") ? (
+                        <a
+                          href={story.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Read Story
+                          <ArrowRight size={15} />
+                        </a>
+                      ) : (
+                        <Link href={story.link}>
+                          Stay Connected
+                          <ArrowRight size={15} />
+                        </Link>
+                      )}
+                    </div>
+                  </article>
+                </ScrollReveal>
+              ))}
+            </div>
+
+            {canScrollRight && (
+              <button
+                type="button"
+                className="news-scroll-arrow news-scroll-arrow-right"
+                onClick={() => scrollStories("right")}
+                aria-label="Next news stories"
+              >
+                <ChevronRight size={20} strokeWidth={1.8} />
+              </button>
+            )}
           </div>
         </div>
       </section>
@@ -241,9 +344,7 @@ export default function NewsPage() {
             <div className="center-heading">
               <span className="kicker">EXPLORE OUR CONTENT</span>
 
-              <h2>
-                More than news.
-              </h2>
+              <h2>More than news.</h2>
 
               <p>
                 Horizon's communications will bring together information,
@@ -258,10 +359,7 @@ export default function NewsPage() {
               const Icon = item.icon;
 
               return (
-                <ScrollReveal
-                  key={item.title}
-                  delay={index * 80}
-                >
+                <ScrollReveal key={item.title} delay={index * 80}>
                   <article className="content-type-card">
                     <div className="content-type-icon">
                       <Icon size={25} strokeWidth={1.5} />
@@ -271,9 +369,7 @@ export default function NewsPage() {
 
                     <p>{item.text}</p>
 
-                    <span>
-                      COMING SOON
-                    </span>
+                    <span>COMING SOON</span>
                   </article>
                 </ScrollReveal>
               );
@@ -290,13 +386,9 @@ export default function NewsPage() {
             <div className="media-image" />
 
             <div className="media-content">
-              <span className="kicker light-kicker">
-                ENGAGEMENT
-              </span>
+              <span className="kicker light-kicker">ENGAGEMENT</span>
 
-              <h2>
-                Conferences, forums and stakeholder conversations.
-              </h2>
+              <h2>Conferences, forums and stakeholder conversations.</h2>
 
               <p>
                 Horizon will use events and professional forums to encourage
@@ -332,13 +424,9 @@ export default function NewsPage() {
         <section className="news-final-cta">
           <div className="container news-final-inner">
             <div>
-              <span className="kicker">
-                STAY CONNECTED
-              </span>
+              <span className="kicker">STAY CONNECTED</span>
 
-              <h2>
-                Follow the journey as Horizon grows.
-              </h2>
+              <h2>Follow the journey as Horizon grows.</h2>
 
               <p>
                 For programme updates, partnership announcements and future
@@ -346,10 +434,7 @@ export default function NewsPage() {
               </p>
             </div>
 
-            <Link
-              href="/contact"
-              className="button button-navy"
-            >
+            <Link href="/contact" className="button button-navy">
               Contact Horizon
               <ArrowRight size={18} />
             </Link>

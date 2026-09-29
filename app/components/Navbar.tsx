@@ -29,6 +29,10 @@ const moreLinks = [
     href: "/our-approach",
   },
   {
+    label: "Retirement-resources",
+    href: "/retirement-resources",
+  },
+  {
     label: "Get Involved",
     href: "/get-involved",
   },
