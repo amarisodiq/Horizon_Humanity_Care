@@ -47,14 +47,72 @@ export default function DonatePage() {
   const [customAmount, setCustomAmount] = useState("");
   const [country, setCountry] = useState("Nigeria");
 
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [paymentError, setPaymentError] = useState("");
+
   const selectedAmount =
-    customAmount && Number(customAmount) > 0
-      ? Number(customAmount)
-      : amount;
+    customAmount && Number(customAmount) > 0 ? Number(customAmount) : amount;
 
   const formattedAmount = new Intl.NumberFormat("en-NG").format(
     selectedAmount || 0
   );
+
+  const handlePaystackPayment = async () => {
+    setPaymentError("");
+
+    if (!email.trim()) {
+      setPaymentError("Please enter your email address.");
+      return;
+    }
+
+    if (!selectedAmount || selectedAmount < 1000) {
+      setPaymentError("Please enter a donation amount of at least ₦1,000.");
+      return;
+    }
+
+    setIsProcessing(true);
+
+    try {
+      const response = await fetch("/api/paystack/initialize", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email.trim(),
+          amount: selectedAmount,
+          firstName: firstName.trim(),
+          lastName: lastName.trim(),
+          phone: phone.trim(),
+          country,
+          frequency,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Unable to start payment.");
+      }
+
+      if (!data.authorization_url) {
+        throw new Error("Paystack did not return a payment URL.");
+      }
+
+      window.location.href = data.authorization_url;
+    } catch (error) {
+      setPaymentError(
+        error instanceof Error
+          ? error.message
+          : "Unable to start payment. Please try again."
+      );
+      setIsProcessing(false);
+    }
+  };
 
   return (
     <main className="donate-page">
@@ -66,9 +124,7 @@ export default function DonatePage() {
         <div className="donate-hero-overlay" />
 
         <div className="container donate-hero-content">
-          <span className="kicker light-kicker">
-            MAKE A DIFFERENCE
-          </span>
+          <span className="kicker light-kicker">MAKE A DIFFERENCE</span>
 
           <h1>
             Honour Their Service.
@@ -86,8 +142,7 @@ export default function DonatePage() {
             <ShieldCheck size={18} />
 
             <span>
-              Every intervention begins with verification and needs
-              assessment.
+              Every intervention begins with verification and needs assessment.
             </span>
           </div>
         </div>
@@ -101,9 +156,7 @@ export default function DonatePage() {
         <div className="container">
           <div className="donate-story-header">
             <div>
-              <span className="kicker">
-                WHY YOUR SUPPORT MATTERS
-              </span>
+              <span className="kicker">WHY YOUR SUPPORT MATTERS</span>
 
               <h2>
                 Someone&apos;s future can
@@ -113,9 +166,9 @@ export default function DonatePage() {
             </div>
 
             <p>
-              Behind every intervention is a person, a family and a story.
-              These examples illustrate the kinds of challenges HHC seeks to
-              address through structured, needs-based support.
+              Behind every intervention is a person, a family and a story. These
+              examples illustrate the kinds of challenges HHC seeks to address
+              through structured, needs-based support.
             </p>
           </div>
 
@@ -136,13 +189,9 @@ export default function DonatePage() {
             </div>
 
             <div className="donate-person-content">
-              <span className="story-label">
-                MEET TAIWO
-              </span>
+              <span className="story-label">MEET TAIWO</span>
 
-              <h3>
-                Life after more than three decades in uniform.
-              </h3>
+              <h3>Life after more than three decades in uniform.</h3>
 
               <p>
                 After more than three decades in uniform, Taiwo retired
@@ -154,9 +203,9 @@ export default function DonatePage() {
               <p>
                 Rice, garri and basic ingredients have become careful
                 calculations. Some days the family manages one solid meal.
-                School fees still arrive. Rent still arrives. The children&apos;s
-                needs do not pause simply because his years of service have
-                ended.
+                School fees still arrive. Rent still arrives. The
+                children&apos;s needs do not pause simply because his years of
+                service have ended.
               </p>
 
               <p>
@@ -188,18 +237,14 @@ export default function DonatePage() {
             </div>
 
             <div className="donate-person-content">
-              <span className="story-label">
-                THEN THERE IS JOHNSON
-              </span>
+              <span className="story-label">THEN THERE IS JOHNSON</span>
 
-              <h3>
-                When healthcare becomes another financial burden.
-              </h3>
+              <h3>When healthcare becomes another financial burden.</h3>
 
               <p>
                 Johnson left service carrying more than memories. Constant
-                headaches and other symptoms forced him back to the clinic.
-                The doctor asked for further tests to find the cause.
+                headaches and other symptoms forced him back to the clinic. The
+                doctor asked for further tests to find the cause.
               </p>
 
               <p>
@@ -224,14 +269,11 @@ export default function DonatePage() {
             <div className="conclusion-line" />
 
             <div>
-              <strong>
-                These are not isolated stories.
-              </strong>
+              <strong>These are not isolated stories.</strong>
 
               <p>
                 Taiwo and Johnson represent the quiet reality faced by many
-                retired security personnel and the families who stood with
-                them.
+                retired security personnel and the families who stood with them.
               </p>
             </div>
           </div>
@@ -259,8 +301,8 @@ export default function DonatePage() {
           <div>
             <p>
               Horizon Humanity Care is building a structured pathway that
-              responds to these realities — not only with temporary relief,
-              but with support that can help families move forward.
+              responds to these realities — not only with temporary relief, but
+              with support that can help families move forward.
             </p>
 
             <p>
@@ -282,10 +324,7 @@ export default function DonatePage() {
           DONATION FORM
       ===================================================== */}
 
-      <section
-        className="donate-form-section section"
-        id="donate"
-      >
+      <section className="donate-form-section section" id="donate">
         <div className="container">
           <div className="center-heading">
             <span className="kicker">
@@ -312,50 +351,40 @@ export default function DonatePage() {
                 <span>01</span>
 
                 <div>
-                  <span className="kicker">
-                    GIVING FREQUENCY
-                  </span>
+                  <span className="kicker">GIVING FREQUENCY</span>
 
-                  <h3>
-                    Choose how you would like to give.
-                  </h3>
+                  <h3>Choose how you would like to give.</h3>
                 </div>
               </div>
 
               <div className="frequency-grid">
-                {["One-Time", "Monthly", "Annual"].map(
-                  (option) => (
-                    <button
-                      type="button"
-                      key={option}
-                      className={`frequency-option ${
-                        frequency === option ? "active" : ""
-                      }`}
-                      onClick={() => setFrequency(option)}
-                    >
-                      {frequency === option && (
-                        <Check size={18} />
-                      )}
+                {["One-Time", "Monthly", "Annual"].map((option) => (
+                  <button
+                    type="button"
+                    key={option}
+                    className={`frequency-option ${
+                      frequency === option ? "active" : ""
+                    }`}
+                    onClick={() => setFrequency(option)}
+                  >
+                    {frequency === option && <Check size={18} />}
 
-                      <span>
-                        {option === "One-Time"
-                          ? "One-Time Gift"
-                          : option === "Monthly"
-                          ? "Monthly Recurring"
-                          : "Annual Strategic Contribution"}
-                      </span>
+                    <span>
+                      {option === "One-Time"
+                        ? "One-Time Gift"
+                        : option === "Monthly"
+                        ? "Monthly Recurring"
+                        : "Annual Strategic Contribution"}
+                    </span>
 
-                      {option === "Monthly" && (
-                        <small>Recommended</small>
-                      )}
-                    </button>
-                  )
-                )}
+                    {option === "Monthly" && <small>Recommended</small>}
+                  </button>
+                ))}
               </div>
 
               <p className="donation-note">
-                Monthly giving helps sustain HHC&apos;s structured
-                intervention cycles and ongoing support.
+                Monthly giving helps sustain HHC&apos;s structured intervention
+                cycles and ongoing support.
               </p>
             </div>
 
@@ -366,13 +395,9 @@ export default function DonatePage() {
                 <span>02</span>
 
                 <div>
-                  <span className="kicker">
-                    YOUR CONTRIBUTION
-                  </span>
+                  <span className="kicker">YOUR CONTRIBUTION</span>
 
-                  <h3>
-                    How much would you like to give?
-                  </h3>
+                  <h3>How much would you like to give?</h3>
                 </div>
               </div>
 
@@ -382,27 +407,20 @@ export default function DonatePage() {
                     type="button"
                     key={value}
                     className={`amount-option ${
-                      amount === value && !customAmount
-                        ? "active"
-                        : ""
+                      amount === value && !customAmount ? "active" : ""
                     }`}
                     onClick={() => {
                       setAmount(value);
                       setCustomAmount("");
                     }}
                   >
-                    ₦
-                    {new Intl.NumberFormat("en-NG").format(
-                      value
-                    )}
+                    ₦{new Intl.NumberFormat("en-NG").format(value)}
                   </button>
                 ))}
               </div>
 
               <div className="custom-amount">
-                <label htmlFor="customAmount">
-                  Or enter your own amount
-                </label>
+                <label htmlFor="customAmount">Or enter your own amount</label>
 
                 <div className="amount-input">
                   <span>₦</span>
@@ -413,24 +431,16 @@ export default function DonatePage() {
                     min="1000"
                     placeholder="Enter amount"
                     value={customAmount}
-                    onChange={(e) =>
-                      setCustomAmount(e.target.value)
-                    }
+                    onChange={(e) => setCustomAmount(e.target.value)}
                   />
                 </div>
               </div>
 
               <div className="impact-tier-grid">
                 {impactTiers.map((tier) => (
-                  <div
-                    className="impact-tier"
-                    key={tier.amount}
-                  >
+                  <div className="impact-tier" key={tier.amount}>
                     <strong>
-                      ₦
-                      {new Intl.NumberFormat("en-NG").format(
-                        tier.amount
-                      )}
+                      ₦{new Intl.NumberFormat("en-NG").format(tier.amount)}
                     </strong>
 
                     <span>{tier.title}</span>
@@ -450,38 +460,34 @@ export default function DonatePage() {
                 <span>03</span>
 
                 <div>
-                  <span className="kicker">
-                    YOUR INFORMATION
-                  </span>
+                  <span className="kicker">YOUR INFORMATION</span>
 
-                  <h3>
-                    Tell us where to send your receipt and updates.
-                  </h3>
+                  <h3>Tell us where to send your receipt and updates.</h3>
                 </div>
               </div>
 
               <div className="donor-form-grid">
                 <div className="form-field">
-                  <label htmlFor="firstName">
-                    First Name
-                  </label>
+                  <label htmlFor="firstName">First Name</label>
 
                   <input
                     id="firstName"
                     type="text"
                     placeholder="First name"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
                   />
                 </div>
 
                 <div className="form-field">
-                  <label htmlFor="lastName">
-                    Last Name
-                  </label>
+                  <label htmlFor="lastName">Last Name</label>
 
                   <input
                     id="lastName"
                     type="text"
                     placeholder="Last name"
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
                   />
                 </div>
 
@@ -494,38 +500,36 @@ export default function DonatePage() {
                     id="email"
                     type="email"
                     placeholder="you@example.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     required
                   />
 
                   <small>
-                    Required for automated receipts and optional
-                    HHC impact updates.
+                    Required for automated receipts and optional HHC impact
+                    updates.
                   </small>
                 </div>
 
                 <div className="form-field">
-                  <label htmlFor="phone">
-                    Phone Number (Optional)
-                  </label>
+                  <label htmlFor="phone">Phone Number (Optional)</label>
 
                   <input
                     id="phone"
                     type="tel"
                     placeholder="+234..."
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
                   />
                 </div>
 
                 <div className="form-field">
-                  <label htmlFor="country">
-                    Country
-                  </label>
+                  <label htmlFor="country">Country</label>
 
                   <select
                     id="country"
                     value={country}
-                    onChange={(e) =>
-                      setCountry(e.target.value)
-                    }
+                    onChange={(e) => setCountry(e.target.value)}
                   >
                     <option>Nigeria</option>
                     <option>Ghana</option>
@@ -540,8 +544,8 @@ export default function DonatePage() {
                 <input type="checkbox" />
 
                 <span>
-                  Keep me informed about Horizon Humanity Care&apos;s
-                  work and impact.
+                  Keep me informed about Horizon Humanity Care&apos;s work and
+                  impact.
                 </span>
               </label>
             </div>
@@ -553,48 +557,32 @@ export default function DonatePage() {
                 <span>04</span>
 
                 <div>
-                  <span className="kicker">
-                    PAYMENT
-                  </span>
+                  <span className="kicker">PAYMENT</span>
 
-                  <h3>
-                    Choose your preferred payment method.
-                  </h3>
+                  <h3>Choose your preferred payment method.</h3>
                 </div>
               </div>
 
               <div className="payment-options">
-                <button
-                  type="button"
-                  className="payment-option active"
-                >
+                <button type="button" className="payment-option active">
                   <CreditCard size={22} />
 
                   <div>
                     <strong>Pay with Card</strong>
 
-                    <span>
-                      Secure online payment
-                    </span>
+                    <span>Secure online payment</span>
                   </div>
 
                   <ArrowRight size={18} />
                 </button>
 
-                <button
-                  type="button"
-                  className="payment-option"
-                >
+                <button type="button" className="payment-option">
                   <Landmark size={22} />
 
                   <div>
-                    <strong>
-                      Pay with Bank Transfer
-                    </strong>
+                    <strong>Pay with Bank Transfer</strong>
 
-                    <span>
-                      Direct NGN bank transfer
-                    </span>
+                    <span>Direct NGN bank transfer</span>
                   </div>
 
                   <ArrowRight size={18} />
@@ -605,25 +593,28 @@ export default function DonatePage() {
                 <div>
                   <span>Your contribution</span>
 
-                  <strong>
-                    ₦{formattedAmount}
-                  </strong>
+                  <strong>₦{formattedAmount}</strong>
                 </div>
 
                 <button
                   type="button"
                   className="button button-gold"
+                  onClick={handlePaystackPayment}
+                  disabled={isProcessing}
                 >
-                  Donate ₦{formattedAmount}
+                  {isProcessing
+                    ? "Opening secure payment..."
+                    : `Donate ₦${formattedAmount}`}
 
                   <ArrowRight size={18} />
                 </button>
-              </div>
 
-              <p className="payment-placeholder">
-                Online payment processing will become active once
-                HHC&apos;s approved payment gateway is connected.
-              </p>
+              </div>
+                {paymentError && (
+                  <p className="payment-error" role="alert">
+                    {paymentError}
+                  </p>
+                )}
             </div>
           </div>
         </div>
@@ -636,9 +627,7 @@ export default function DonatePage() {
       <section className="bank-transfer-section">
         <div className="container bank-transfer-grid">
           <div>
-            <span className="kicker">
-              DIRECT BANK TRANSFER
-            </span>
+            <span className="kicker">DIRECT BANK TRANSFER</span>
 
             <h2>
               Prefer to give
@@ -647,17 +636,16 @@ export default function DonatePage() {
             </h2>
 
             <p>
-              You can make a direct NGN transfer through your mobile
-              banking application or bank.
+              You can make a direct NGN transfer through your mobile banking
+              application or bank.
             </p>
 
             <div className="bank-transfer-note">
               <ShieldCheck size={18} />
 
               <span>
-                These are HHC&apos;s verified donation account details.
-                Please include your donation purpose in the transfer
-                reference.
+                These are HHC&apos;s verified donation account details. Please
+                include your donation purpose in the transfer reference.
               </span>
             </div>
           </div>
@@ -666,17 +654,13 @@ export default function DonatePage() {
             <div className="bank-card-top">
               <Landmark size={22} />
 
-              <span>
-                HORIZON HUMANITY CARE
-              </span>
+              <span>HORIZON HUMANITY CARE</span>
             </div>
 
             <div className="bank-detail">
               <span>Account Name</span>
 
-              <strong>
-                Horizon Humanity Care
-              </strong>
+              <strong>Horizon Humanity Care</strong>
             </div>
 
             <div className="bank-detail">
@@ -684,9 +668,7 @@ export default function DonatePage() {
 
               <strong>Providus Bank</strong>
 
-              <span className="account-number">
-                1310328477
-              </span>
+              <span className="account-number">1310328477</span>
             </div>
 
             <div className="bank-detail">
@@ -694,27 +676,22 @@ export default function DonatePage() {
 
               <strong>Providus Bank</strong>
 
-              <span className="account-number">
-                1310330423
-              </span>
+              <span className="account-number">1310330423</span>
             </div>
 
             <div className="bank-detail">
               <span>SWIFT Code</span>
 
-              <strong>
-                UMPLNGLA
-              </strong>
+              <strong>UMPLNGLA</strong>
             </div>
 
             <div className="bank-reference">
               <strong>Important:</strong>
 
               <p>
-                Please state the purpose of your donation in the
-                transaction remarks, such as &quot;Basic Needs&quot;,
-                &quot;Health Pillar&quot; or &quot;Fallen Heroes
-                Support&quot;.
+                Please state the purpose of your donation in the transaction
+                remarks, such as &quot;Basic Needs&quot;, &quot;Health
+                Pillar&quot; or &quot;Fallen Heroes Support&quot;.
               </p>
             </div>
           </div>
@@ -732,26 +709,21 @@ export default function DonatePage() {
               <HeartHandshake size={30} />
             </div>
 
-            <span className="kicker">
-              YOUR GIFT CREATES POSSIBILITY
-            </span>
+            <span className="kicker">YOUR GIFT CREATES POSSIBILITY</span>
 
             <h2>
               Every contribution helps extend
               <br />
-              <em>
-                practical support to someone who served.
-              </em>
+              <em>practical support to someone who served.</em>
             </h2>
 
             <p>
-              Your contribution helps HHC respond to a retiree,
-              veteran, dependant or family when support is needed most.
+              Your contribution helps HHC respond to a retiree, veteran,
+              dependant or family when support is needed most.
             </p>
 
             <p>
-              Thank you for helping us honour service and empower
-              retirement.
+              Thank you for helping us honour service and empower retirement.
             </p>
           </div>
         </div>
@@ -764,9 +736,7 @@ export default function DonatePage() {
       <section className="adopt-family-section">
         <div className="container adopt-family-grid">
           <div>
-            <span className="kicker light-kicker">
-              A SPECIAL WAY TO GIVE
-            </span>
+            <span className="kicker light-kicker">A SPECIAL WAY TO GIVE</span>
 
             <h2>
               Want to make a
@@ -775,33 +745,26 @@ export default function DonatePage() {
             </h2>
 
             <p>
-              Support a vulnerable retiree or fallen hero&apos;s family
-              through a structured RSPEI package based on the
-              household&apos;s assessed needs.
+              Support a vulnerable retiree or fallen hero&apos;s family through
+              a structured RSPEI package based on the household&apos;s assessed
+              needs.
             </p>
           </div>
 
           <div className="adopt-family-card">
             <Users size={28} />
 
-            <span>
-              ADOPT A VULNERABLE RETIREE FAMILY
-            </span>
+            <span>ADOPT A VULNERABLE RETIREE FAMILY</span>
 
-            <strong>
-              ₦3,000,000
-            </strong>
+            <strong>₦3,000,000</strong>
 
             <p>
-              A major contribution toward full RSPEI support,
-              providing a structured package of assistance based on
-              the family&apos;s assessed needs.
+              A major contribution toward full RSPEI support, providing a
+              structured package of assistance based on the family&apos;s
+              assessed needs.
             </p>
 
-            <a
-              href="#contact"
-              className="button button-gold"
-            >
+            <a href="#contact" className="button button-gold">
               Adopt a Family
               <ArrowRight size={18} />
             </a>
@@ -813,16 +776,11 @@ export default function DonatePage() {
           CONTACT
       ===================================================== */}
 
-      <section
-        className="donate-contact section"
-        id="contact"
-      >
+      <section className="donate-contact section" id="contact">
         <div className="container">
           <div className="donate-contact-card">
             <div>
-              <span className="kicker">
-                MAJOR GIFTS & PARTNERSHIPS
-              </span>
+              <span className="kicker">MAJOR GIFTS & PARTNERSHIPS</span>
 
               <h2>
                 Want to do
@@ -831,9 +789,8 @@ export default function DonatePage() {
               </h2>
 
               <p>
-                For major gifts, family sponsorships, corporate
-                contributions and institutional partnerships, please
-                contact the HHC team.
+                For major gifts, family sponsorships, corporate contributions
+                and institutional partnerships, please contact the HHC team.
               </p>
             </div>
 
@@ -842,18 +799,11 @@ export default function DonatePage() {
                 hhc.humanitycare@gmail.com
               </a>
 
-              <a href="tel:+2349165794936">
-                +234 916 579 4936
-              </a>
+              <a href="tel:+2349165794936">+234 916 579 4936</a>
 
-              <a href="tel:+2349033169558">
-                +234 903 316 9558
-              </a>
+              <a href="tel:+2349033169558">+234 903 316 9558</a>
 
-              <Link
-                href="/partnerships"
-                className="text-link"
-              >
+              <Link href="/partnerships" className="text-link">
                 Explore Partnership Opportunities
                 <ArrowRight size={16} />
               </Link>
@@ -871,11 +821,10 @@ export default function DonatePage() {
           <ShieldCheck size={24} />
 
           <p>
-            Every donation to Horizon Humanity Care is intended to
-            support verified, needs-based interventions. HHC tracks
-            beneficiaries, services delivered and follow-up outcomes
-            to support responsible stewardship and meaningful impact
-            reporting.
+            Every donation to Horizon Humanity Care is intended to support
+            verified, needs-based interventions. HHC tracks beneficiaries,
+            services delivered and follow-up outcomes to support responsible
+            stewardship and meaningful impact reporting.
           </p>
         </div>
       </section>
