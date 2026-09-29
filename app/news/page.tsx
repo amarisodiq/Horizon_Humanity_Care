@@ -26,6 +26,17 @@ const stories = [
   },
   {
     category: "PARTNERSHIPS & ENGAGEMENT",
+    date: "29 SEPTEMBER 2026",
+    title:
+      "HHCF Visits POWA President, Seeks Collaboration for Rivers Community Outreach",
+    text:
+      "Horizon Humanity Care Foundation (HHCF) visited the President of the Police Officers Wives Association (POWA) to explore collaboration opportunities supporting community outreach and the welfare of service families in Rivers State.",
+    image: "/images/news-powa-collaboration.jpg",
+    link:
+      "https://www.revelationagents.com/hhcf-visits-powa-president-seeks-collaboration-for-rivers-community-outreach/",
+  },
+  {
+    category: "PARTNERSHIPS & ENGAGEMENT",
     date: "21 SEPTEMBER 2026",
     title:
       "HHC Management Team Pays Courtesy Visit to Former Minister of Youth Development",
