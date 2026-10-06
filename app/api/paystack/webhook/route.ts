@@ -81,6 +81,63 @@ export async function POST(request: Request) {
       const amountInNaira =
         Number(transaction.amount || 0) / 100;
 
+      let subscriptionCode: string | null = null;
+
+      /*
+       * Paystack's charge.success payload contains
+       * the plan, but not necessarily the subscription code.
+       *
+       * For recurring payments, fetch the customer and
+       * look for the active subscription.
+       */
+      if (
+        transaction.plan?.plan_code &&
+        transaction.customer?.customer_code
+      ) {
+        try {
+          const customerResponse = await fetch(
+            `https://api.paystack.co/customer/${encodeURIComponent(
+              transaction.customer.customer_code
+            )}`,
+            {
+              method: "GET",
+              headers: {
+                Authorization: `Bearer ${secret}`,
+                "Content-Type": "application/json",
+              },
+            }
+          );
+
+          const customerData = await customerResponse.json();
+
+          console.log(
+            "PAYSTACK CUSTOMER DATA:",
+            JSON.stringify(customerData, null, 2)
+          );
+
+          if (customerResponse.ok && customerData.status) {
+            const subscriptions =
+              customerData.data?.subscriptions || [];
+
+            const matchingSubscription =
+              subscriptions.find(
+                (subscription: any) =>
+                  subscription.plan?.plan_code ===
+                    transaction.plan?.plan_code &&
+                  subscription.status === "active"
+              );
+
+            subscriptionCode =
+              matchingSubscription?.subscription_code || null;
+          }
+        } catch (error) {
+          console.error(
+            "Unable to retrieve Paystack subscription:",
+            error
+          );
+        }
+      }
+
       const donation = {
         paystack_reference: transaction.reference,
 
@@ -109,16 +166,7 @@ export async function POST(request: Request) {
           transaction.created_at ||
           new Date().toISOString(),
 
-        /*
-         * Recurring donation information.
-         *
-         * These values are available when the
-         * transaction is connected to a Paystack plan.
-         */
-        subscription_code:
-          transaction.subscription?.subscription_code ||
-          transaction.subscription_code ||
-          null,
+        subscription_code: subscriptionCode,
 
         plan_code:
           transaction.plan?.plan_code ||
