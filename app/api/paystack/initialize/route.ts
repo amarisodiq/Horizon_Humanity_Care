@@ -49,7 +49,7 @@ export async function POST(request: Request) {
         );
       }
 
-      plan = "PLN_m4vxgxqvwh066l8";
+      plan = "PLN_m4vxgxqvvh066l8";
     }
 
     /*
