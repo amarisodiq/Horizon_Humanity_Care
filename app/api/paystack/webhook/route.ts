@@ -67,6 +67,11 @@ export async function POST(request: Request) {
     if (event.event === "charge.success") {
       const transaction = event.data;
 
+      console.log(
+        "PAYSTACK TRANSACTION DATA:",
+        JSON.stringify(transaction, null, 2)
+      );
+
       const metadata =
         transaction.metadata &&
         typeof transaction.metadata === "object"
@@ -78,37 +83,68 @@ export async function POST(request: Request) {
 
       const donation = {
         paystack_reference: transaction.reference,
+
         paystack_transaction_id: transaction.id,
+
         amount: amountInNaira,
+
         currency: transaction.currency || "NGN",
+
         frequency: normalizeFrequency(metadata.frequency),
+
         payment_status: "success",
+
         donor_email:
           transaction.customer?.email ||
           metadata.email ||
           "",
+
         donor_phone:
           transaction.customer?.phone ||
           metadata.phone ||
           null,
+
         donation_date:
           transaction.paid_at ||
           transaction.created_at ||
           new Date().toISOString(),
-        metadata: metadata,
+
+        /*
+         * Recurring donation information.
+         *
+         * These values are available when the
+         * transaction is connected to a Paystack plan.
+         */
+        subscription_code:
+          transaction.subscription?.subscription_code ||
+          transaction.subscription_code ||
+          null,
+
+        plan_code:
+          transaction.plan?.plan_code ||
+          transaction.plan_code ||
+          null,
+
+        metadata,
+
         updated_at: new Date().toISOString(),
       };
 
       if (!donation.paystack_reference) {
         return NextResponse.json(
-          { message: "Missing Paystack transaction reference." },
+          {
+            message:
+              "Missing Paystack transaction reference.",
+          },
           { status: 400 }
         );
       }
 
       if (!donation.donor_email) {
         return NextResponse.json(
-          { message: "Missing donor email." },
+          {
+            message: "Missing donor email.",
+          },
           { status: 400 }
         );
       }
@@ -120,7 +156,10 @@ export async function POST(request: Request) {
         });
 
       if (error) {
-        console.error("Donation database error:", error);
+        console.error(
+          "Donation database error:",
+          error
+        );
 
         return NextResponse.json(
           {
@@ -133,6 +172,10 @@ export async function POST(request: Request) {
       console.log("Donation saved:", {
         reference: donation.paystack_reference,
         amount: donation.amount,
+        frequency: donation.frequency,
+        subscription_code:
+          donation.subscription_code,
+        plan_code: donation.plan_code,
         email: donation.donor_email,
       });
     }
@@ -142,10 +185,15 @@ export async function POST(request: Request) {
       { status: 200 }
     );
   } catch (error) {
-    console.error("Paystack webhook error:", error);
+    console.error(
+      "Paystack webhook error:",
+      error
+    );
 
     return NextResponse.json(
-      { message: "Webhook processing failed." },
+      {
+        message: "Webhook processing failed.",
+      },
       { status: 500 }
     );
   }
