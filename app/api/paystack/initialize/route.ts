@@ -4,15 +4,8 @@ export async function POST(request: Request) {
   try {
     const body = await request.json();
 
-    const {
-      email,
-      amount,
-      firstName,
-      lastName,
-      phone,
-      country,
-      frequency,
-    } = body;
+    const { email, amount, firstName, lastName, phone, country, frequency } =
+      body;
 
     if (!email || !amount) {
       return NextResponse.json(
@@ -42,7 +35,10 @@ export async function POST(request: Request) {
      */
     let plan: string | undefined;
 
-    if (normalizedFrequency === "monthly recurring") {
+    if (
+      normalizedFrequency === "monthly" ||
+      normalizedFrequency === "monthly recurring"
+    ) {
       if (numericAmount !== 10000) {
         return NextResponse.json(
           {
@@ -120,8 +116,7 @@ export async function POST(request: Request) {
 
       return NextResponse.json(
         {
-          message:
-            data.message || "Unable to initialize payment.",
+          message: data.message || "Unable to initialize payment.",
         },
         { status: 400 }
       );
@@ -136,8 +131,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json(
       {
-        message:
-          "Something went wrong while starting payment.",
+        message: "Something went wrong while starting payment.",
       },
       { status: 500 }
     );
