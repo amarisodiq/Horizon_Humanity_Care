@@ -28,33 +28,41 @@ export async function POST(request: Request) {
       .toLowerCase();
 
     /*
-     * HHC recurring donation plans
+     * HHC Monthly Giving Plans
      *
-     * Only the ₦10,000 monthly plan has been created
-     * in Paystack Test Mode so far.
+     * Each monthly donation amount has its own
+     * Paystack recurring plan.
      */
+    const monthlyPlans: Record<number, string> = {
+      10000: "PLN_m4vxgxqvvh066l8",
+      20000: "PLN_3b7ufw9w1pch95i",
+      50000: "PLN_ycfi3flf9iaro72",
+      100000: "PLN_fu2f9fmhy0y3quw",
+      250000: "PLN_zrx0ds59olriocu",
+      500000: "PLN_0z4wb85x41z1g1g",
+    };
+
     let plan: string | undefined;
 
     if (
       normalizedFrequency === "monthly" ||
       normalizedFrequency === "monthly recurring"
     ) {
-      if (numericAmount !== 10000) {
+      plan = monthlyPlans[numericAmount];
+
+      if (!plan) {
         return NextResponse.json(
           {
             message:
-              "The ₦10,000 monthly giving plan is currently the available recurring plan.",
+              "Please select one of the available monthly giving amounts: ₦10,000, ₦20,000, ₦50,000, ₦100,000, ₦250,000 or ₦500,000.",
           },
           { status: 400 }
         );
       }
-
-      plan = "PLN_m4vxgxqvvh066l8";
     }
 
     /*
      * Annual recurring payments are not enabled yet.
-     * We will add them after creating the annual Paystack plans.
      */
     if (normalizedFrequency === "annual strategic contribution") {
       return NextResponse.json(
@@ -87,11 +95,8 @@ export async function POST(request: Request) {
     };
 
     /*
-     * Adding a Paystack plan creates a subscription
-     * after the customer's first successful payment.
-     *
-     * Paystack uses the plan amount instead of the
-     * transaction amount when a plan is supplied.
+     * Adding a Paystack plan creates a recurring
+     * subscription after the first successful payment.
      */
     if (plan) {
       transactionData.plan = plan;
