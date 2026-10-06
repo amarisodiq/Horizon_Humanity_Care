@@ -16,11 +16,12 @@ export async function GET() {
       );
     }
 
-    // This is the transaction ID from the HHC monthly test payment.
-    const transactionId = "6612807468";
+    const reference = "T183482727031176";
 
     const response = await fetch(
-      `https://api.paystack.co/integration/webhooks/events/lookup?reference=${transactionId}`,
+      `https://api.paystack.co/transaction/verify/${encodeURIComponent(
+        reference
+      )}`,
       {
         method: "GET",
         headers: {
@@ -38,20 +39,37 @@ export async function GET() {
         {
           success: false,
           paystackStatus: response.status,
-          message: data.message || "Unable to retrieve webhook event.",
-          data,
+          message: data.message || "Unable to verify transaction.",
         },
         { status: response.status }
       );
     }
 
+    const transaction = data.data;
+
     return NextResponse.json({
       success: true,
-      message: "Paystack webhook event retrieved.",
-      data: data.data,
+
+      transaction: {
+        id: transaction.id,
+        reference: transaction.reference,
+        status: transaction.status,
+        amount: transaction.amount,
+        currency: transaction.currency,
+        domain: transaction.domain,
+        paid_at: transaction.paid_at,
+      },
+
+      customer: transaction.customer,
+
+      authorization: transaction.authorization,
+
+      plan: transaction.plan || null,
+
+      metadata: transaction.metadata,
     });
   } catch (error) {
-    console.error("Webhook debug error:", error);
+    console.error("Paystack transaction debug error:", error);
 
     return NextResponse.json(
       {
