@@ -119,12 +119,11 @@ export async function POST(request: Request) {
             const subscriptions =
               customerData.data?.subscriptions || [];
 
-            const matchingSubscription =
+              const matchingSubscription =
               subscriptions.find(
                 (subscription: any) =>
-                  subscription.plan?.plan_code ===
-                    transaction.plan?.plan_code &&
-                  subscription.status === "active"
+                  subscription.status === "active" &&
+                  Number(subscription.amount) === Number(transaction.amount)
               );
 
             subscriptionCode =
