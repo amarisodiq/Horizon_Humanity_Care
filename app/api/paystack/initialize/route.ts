@@ -64,7 +64,17 @@ export async function POST(request: Request) {
     /*
      * Annual recurring payments are not enabled yet.
      */
-    if (normalizedFrequency === "annual strategic contribution") {
+    /*
+     * Annual recurring payments are not enabled yet.
+     *
+     * The frontend currently sends "Annual", so both
+     * possible values are blocked here to prevent an
+     * annual donation from accidentally becoming one-time.
+     */
+    if (
+      normalizedFrequency === "annual" ||
+      normalizedFrequency === "annual strategic contribution"
+    ) {
       return NextResponse.json(
         {
           message:
