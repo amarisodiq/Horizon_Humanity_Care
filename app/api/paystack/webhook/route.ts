@@ -168,12 +168,9 @@ export async function POST(request: Request) {
 
       const donation = {
         paystack_reference: transaction.reference,
-
         paystack_transaction_id: transaction.id,
-
+        paystack_environment: transaction.domain || null,
         amount: amountInNaira,
-
-        currency: transaction.currency || "NGN",
 
         frequency: normalizeFrequency(metadata.frequency),
 
