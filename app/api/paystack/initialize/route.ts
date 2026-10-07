@@ -34,12 +34,12 @@ export async function POST(request: Request) {
      * Paystack recurring plan.
      */
     const monthlyPlans: Record<number, string> = {
-      10000: "PLN_m4vxgxqvvh066l8",
-      20000: "PLN_3b7ufw9w1pch95i",
-      50000: "PLN_ycfi3flf9iaro72",
-      100000: "PLN_fu2f9fmhy0y3quw",
-      250000: "PLN_zrx0ds59olriocu",
-      500000: "PLN_0z4wb85x41z1g1g",
+      10000: "PLN_6gebdc21b2krtxn",
+      20000: "PLN_je5zotqsn43hk45",
+      50000: "PLN_wtda2l5xgmmw4rj",
+      100000: "PLN_a7fm0vkqi60dnhe",
+      250000: "PLN_s3w475rrr0sme9t",
+      500000: "PLN_s0ulk0cm4is8the",
     };
 
     let plan: string | undefined;
