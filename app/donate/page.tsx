@@ -12,7 +12,14 @@ import {
   Users,
 } from "lucide-react";
 
-const donationAmounts = [10000, 20000, 50000, 100000, 250000, 500000];
+const donationAmounts = [
+  10000,
+  20000,
+  50000,
+  100000,
+  250000,
+  500000,
+];
 
 const impactTiers = [
   {
@@ -54,62 +61,128 @@ export default function DonatePage() {
   const [isProcessing, setIsProcessing] = useState(false);
   const [paymentError, setPaymentError] = useState("");
 
+  /*
+   * For One-Time donations:
+   * - fixed amounts are available
+   * - custom amounts are allowed
+   *
+   * For Monthly donations:
+   * - only the six Paystack plan amounts are allowed
+   */
   const selectedAmount =
-    customAmount && Number(customAmount) > 0 ? Number(customAmount) : amount;
+    frequency === "One-Time" &&
+    customAmount &&
+    Number(customAmount) > 0
+      ? Number(customAmount)
+      : amount;
 
   const formattedAmount = new Intl.NumberFormat("en-NG").format(
     selectedAmount || 0
   );
 
+  const handleFrequencyChange = (option: string) => {
+    setFrequency(option);
+    setPaymentError("");
+
+    /*
+     * Custom amounts are only supported for One-Time donations.
+     * Clear it when switching to Monthly.
+     */
+    if (option === "Monthly") {
+      setCustomAmount("");
+    }
+  };
+
+  const handleAmountChange = (value: number) => {
+    setAmount(value);
+    setCustomAmount("");
+    setPaymentError("");
+  };
+
+  const handleCustomAmountChange = (
+    value: string
+  ) => {
+    setCustomAmount(value);
+    setPaymentError("");
+  };
+
   const handlePaystackPayment = async () => {
     setPaymentError("");
 
     if (!email.trim()) {
-      setPaymentError("Please enter your email address.");
+      setPaymentError(
+        "Please enter your email address."
+      );
       return;
     }
 
     if (!selectedAmount || selectedAmount < 1000) {
-      setPaymentError("Please enter a donation amount of at least ₦1,000.");
+      setPaymentError(
+        "Please enter a donation amount of at least ₦1,000."
+      );
+      return;
+    }
+
+    /*
+     * Monthly donations must match one of the
+     * Paystack recurring plans.
+     */
+    if (
+      frequency === "Monthly" &&
+      !donationAmounts.includes(selectedAmount)
+    ) {
+      setPaymentError(
+        "Please select one of the available monthly giving amounts."
+      );
       return;
     }
 
     setIsProcessing(true);
 
     try {
-      const response = await fetch("/api/paystack/initialize", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: email.trim(),
-          amount: selectedAmount,
-          firstName: firstName.trim(),
-          lastName: lastName.trim(),
-          phone: phone.trim(),
-          country,
-          frequency,
-        }),
-      });
+      const response = await fetch(
+        "/api/paystack/initialize",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: email.trim(),
+            amount: selectedAmount,
+            firstName: firstName.trim(),
+            lastName: lastName.trim(),
+            phone: phone.trim(),
+            country,
+            frequency,
+          }),
+        }
+      );
 
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.message || "Unable to start payment.");
+        throw new Error(
+          data.message ||
+            "Unable to start payment."
+        );
       }
 
       if (!data.authorization_url) {
-        throw new Error("Paystack did not return a payment URL.");
+        throw new Error(
+          "Paystack did not return a payment URL."
+        );
       }
 
-      window.location.href = data.authorization_url;
+      window.location.href =
+        data.authorization_url;
     } catch (error) {
       setPaymentError(
         error instanceof Error
           ? error.message
           : "Unable to start payment. Please try again."
       );
+
       setIsProcessing(false);
     }
   };
@@ -124,7 +197,9 @@ export default function DonatePage() {
         <div className="donate-hero-overlay" />
 
         <div className="container donate-hero-content">
-          <span className="kicker light-kicker">MAKE A DIFFERENCE</span>
+          <span className="kicker light-kicker">
+            MAKE A DIFFERENCE
+          </span>
 
           <h1>
             Honour Their Service.
@@ -156,7 +231,9 @@ export default function DonatePage() {
         <div className="container">
           <div className="donate-story-header">
             <div>
-              <span className="kicker">WHY YOUR SUPPORT MATTERS</span>
+              <span className="kicker">
+                WHY YOUR SUPPORT MATTERS
+              </span>
 
               <h2>
                 Someone&apos;s future can
@@ -166,13 +243,14 @@ export default function DonatePage() {
             </div>
 
             <p>
-              Behind every intervention is a person, a family and a story. These
-              examples illustrate the kinds of challenges HHC seeks to address
-              through structured, needs-based support.
+              Behind every intervention is a person, a family and a story.
+              These examples illustrate the kinds of challenges HHC seeks to
+              address through structured, needs-based support.
             </p>
           </div>
 
           {/* TAIWO */}
+
           <article className="donate-person-story">
             <div className="donate-person-image">
               <img
@@ -189,9 +267,13 @@ export default function DonatePage() {
             </div>
 
             <div className="donate-person-content">
-              <span className="story-label">MEET TAIWO</span>
+              <span className="story-label">
+                MEET TAIWO
+              </span>
 
-              <h3>Life after more than three decades in uniform.</h3>
+              <h3>
+                Life after more than three decades in uniform.
+              </h3>
 
               <p>
                 After more than three decades in uniform, Taiwo retired
@@ -215,12 +297,15 @@ export default function DonatePage() {
 
               <div className="donate-person-tag">
                 <span>CHALLENGE</span>
-                <strong>Household welfare & economic pressure</strong>
+                <strong>
+                  Household welfare & economic pressure
+                </strong>
               </div>
             </div>
           </article>
 
           {/* JOHNSON */}
+
           <article className="donate-person-story reverse">
             <div className="donate-person-image">
               <img
@@ -237,9 +322,13 @@ export default function DonatePage() {
             </div>
 
             <div className="donate-person-content">
-              <span className="story-label">THEN THERE IS JOHNSON</span>
+              <span className="story-label">
+                THEN THERE IS JOHNSON
+              </span>
 
-              <h3>When healthcare becomes another financial burden.</h3>
+              <h3>
+                When healthcare becomes another financial burden.
+              </h3>
 
               <p>
                 Johnson left service carrying more than memories. Constant
@@ -260,7 +349,9 @@ export default function DonatePage() {
 
               <div className="donate-person-tag">
                 <span>CHALLENGE</span>
-                <strong>Healthcare access & household stability</strong>
+                <strong>
+                  Healthcare access & household stability
+                </strong>
               </div>
             </div>
           </article>
@@ -269,7 +360,9 @@ export default function DonatePage() {
             <div className="conclusion-line" />
 
             <div>
-              <strong>These are not isolated stories.</strong>
+              <strong>
+                These are not isolated stories.
+              </strong>
 
               <p>
                 Taiwo and Johnson represent the quiet reality faced by many
@@ -324,7 +417,10 @@ export default function DonatePage() {
           DONATION FORM
       ===================================================== */}
 
-      <section className="donate-form-section section" id="donate">
+      <section
+        className="donate-form-section section"
+        id="donate"
+      >
         <div className="container">
           <div className="center-heading">
             <span className="kicker">
@@ -344,60 +440,85 @@ export default function DonatePage() {
           </div>
 
           <div className="donation-form-shell">
-            {/* FREQUENCY */}
+            {/* =================================================
+                FREQUENCY
+            ================================================= */}
 
             <div className="donation-step">
               <div className="donation-step-heading">
                 <span>01</span>
 
                 <div>
-                  <span className="kicker">GIVING FREQUENCY</span>
+                  <span className="kicker">
+                    GIVING FREQUENCY
+                  </span>
 
-                  <h3>Choose how you would like to give.</h3>
+                  <h3>
+                    Choose how you would like to give.
+                  </h3>
                 </div>
               </div>
 
               <div className="frequency-grid">
-                {["One-Time", "Monthly", "Annual"].map((option) => (
-                  <button
-                    type="button"
-                    key={option}
-                    className={`frequency-option ${
-                      frequency === option ? "active" : ""
-                    }`}
-                    onClick={() => setFrequency(option)}
-                  >
-                    {frequency === option && <Check size={18} />}
+                {["One-Time", "Monthly"].map(
+                  (option) => (
+                    <button
+                      type="button"
+                      key={option}
+                      className={`frequency-option ${
+                        frequency === option
+                          ? "active"
+                          : ""
+                      }`}
+                      onClick={() =>
+                        handleFrequencyChange(
+                          option
+                        )
+                      }
+                    >
+                      {frequency === option && (
+                        <Check size={18} />
+                      )}
 
-                    <span>
-                      {option === "One-Time"
-                        ? "One-Time Gift"
-                        : option === "Monthly"
-                        ? "Monthly Recurring"
-                        : "Annual Strategic Contribution"}
-                    </span>
+                      <span>
+                        {option === "One-Time"
+                          ? "One-Time Gift"
+                          : "Monthly Recurring"}
+                      </span>
 
-                    {option === "Monthly" && <small>Recommended</small>}
-                  </button>
-                ))}
+                      {option === "Monthly" && (
+                        <small>
+                          Recommended
+                        </small>
+                      )}
+                    </button>
+                  )
+                )}
               </div>
 
               <p className="donation-note">
-                Monthly giving helps sustain HHC&apos;s structured intervention
-                cycles and ongoing support.
+                {frequency === "Monthly"
+                  ? "Monthly giving helps sustain HHC's structured intervention cycles and ongoing support."
+                  : "One-time gifts help HHC respond to immediate welfare, healthcare and family support needs."}
               </p>
             </div>
 
-            {/* AMOUNT */}
+            {/* =================================================
+                AMOUNT
+            ================================================= */}
 
             <div className="donation-step">
               <div className="donation-step-heading">
                 <span>02</span>
 
                 <div>
-                  <span className="kicker">YOUR CONTRIBUTION</span>
+                  <span className="kicker">
+                    YOUR CONTRIBUTION
+                  </span>
 
-                  <h3>How much would you like to give?</h3>
+                  <h3>
+                    How much would you like to give?
+                  </h3>
                 </div>
               </div>
 
@@ -407,93 +528,151 @@ export default function DonatePage() {
                     type="button"
                     key={value}
                     className={`amount-option ${
-                      amount === value && !customAmount ? "active" : ""
+                      amount === value &&
+                      !customAmount
+                        ? "active"
+                        : ""
                     }`}
-                    onClick={() => {
-                      setAmount(value);
-                      setCustomAmount("");
-                    }}
+                    onClick={() =>
+                      handleAmountChange(value)
+                    }
                   >
-                    ₦{new Intl.NumberFormat("en-NG").format(value)}
+                    ₦
+                    {new Intl.NumberFormat(
+                      "en-NG"
+                    ).format(value)}
                   </button>
                 ))}
               </div>
 
-              <div className="custom-amount">
-                <label htmlFor="customAmount">Or enter your own amount</label>
+              {/* CUSTOM AMOUNT
+                  Only available for One-Time donations.
+              */}
 
-                <div className="amount-input">
-                  <span>₦</span>
+              {frequency === "One-Time" && (
+                <div className="custom-amount">
+                  <label htmlFor="customAmount">
+                    Or enter your own amount
+                  </label>
 
-                  <input
-                    id="customAmount"
-                    type="number"
-                    min="1000"
-                    placeholder="Enter amount"
-                    value={customAmount}
-                    onChange={(e) => setCustomAmount(e.target.value)}
-                  />
+                  <div className="amount-input">
+                    <span>₦</span>
+
+                    <input
+                      id="customAmount"
+                      type="number"
+                      min="1000"
+                      placeholder="Enter amount"
+                      value={customAmount}
+                      onChange={(e) =>
+                        handleCustomAmountChange(
+                          e.target.value
+                        )
+                      }
+                    />
+                  </div>
+
+                  <small>
+                    Minimum donation: ₦1,000
+                  </small>
                 </div>
-              </div>
+              )}
+
+              {/* MONTHLY PLAN NOTE */}
+
+              {frequency === "Monthly" && (
+                <div className="monthly-plan-note">
+                  <ShieldCheck size={18} />
+
+                  <span>
+                    Monthly giving is available in the fixed amounts shown
+                    above. Each amount is securely linked to its corresponding
+                    recurring Paystack plan.
+                  </span>
+                </div>
+              )}
 
               <div className="impact-tier-grid">
                 {impactTiers.map((tier) => (
-                  <div className="impact-tier" key={tier.amount}>
+                  <div
+                    className="impact-tier"
+                    key={tier.amount}
+                  >
                     <strong>
-                      ₦{new Intl.NumberFormat("en-NG").format(tier.amount)}
+                      ₦
+                      {new Intl.NumberFormat(
+                        "en-NG"
+                      ).format(tier.amount)}
                     </strong>
 
                     <span>{tier.title}</span>
 
                     <p>{tier.description}</p>
 
-                    <small>{tier.alternative}</small>
+                    <small>
+                      {tier.alternative}
+                    </small>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* DONOR INFORMATION */}
+            {/* =================================================
+                DONOR INFORMATION
+            ================================================= */}
 
             <div className="donation-step">
               <div className="donation-step-heading">
                 <span>03</span>
 
                 <div>
-                  <span className="kicker">YOUR INFORMATION</span>
+                  <span className="kicker">
+                    YOUR INFORMATION
+                  </span>
 
-                  <h3>Tell us where to send your receipt and updates.</h3>
+                  <h3>
+                    Tell us where to send your receipt and updates.
+                  </h3>
                 </div>
               </div>
 
               <div className="donor-form-grid">
                 <div className="form-field">
-                  <label htmlFor="firstName">First Name</label>
+                  <label htmlFor="firstName">
+                    First Name
+                  </label>
 
                   <input
                     id="firstName"
                     type="text"
                     placeholder="First name"
                     value={firstName}
-                    onChange={(e) => setFirstName(e.target.value)}
+                    onChange={(e) =>
+                      setFirstName(e.target.value)
+                    }
                   />
                 </div>
 
                 <div className="form-field">
-                  <label htmlFor="lastName">Last Name</label>
+                  <label htmlFor="lastName">
+                    Last Name
+                  </label>
 
                   <input
                     id="lastName"
                     type="text"
                     placeholder="Last name"
                     value={lastName}
-                    onChange={(e) => setLastName(e.target.value)}
+                    onChange={(e) =>
+                      setLastName(e.target.value)
+                    }
                   />
                 </div>
 
                 <div className="form-field full">
                   <label htmlFor="email">
-                    Email Address <span>*</span>
+                    Email Address{" "}
+                    <span>*</span>
                   </label>
 
                   <input
@@ -501,7 +680,9 @@ export default function DonatePage() {
                     type="email"
                     placeholder="you@example.com"
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    onChange={(e) =>
+                      setEmail(e.target.value)
+                    }
                     required
                   />
 
@@ -512,24 +693,32 @@ export default function DonatePage() {
                 </div>
 
                 <div className="form-field">
-                  <label htmlFor="phone">Phone Number (Optional)</label>
+                  <label htmlFor="phone">
+                    Phone Number (Optional)
+                  </label>
 
                   <input
                     id="phone"
                     type="tel"
                     placeholder="+234..."
                     value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
+                    onChange={(e) =>
+                      setPhone(e.target.value)
+                    }
                   />
                 </div>
 
                 <div className="form-field">
-                  <label htmlFor="country">Country</label>
+                  <label htmlFor="country">
+                    Country
+                  </label>
 
                   <select
                     id="country"
                     value={country}
-                    onChange={(e) => setCountry(e.target.value)}
+                    onChange={(e) =>
+                      setCountry(e.target.value)
+                    }
                   >
                     <option>Nigeria</option>
                     <option>Ghana</option>
@@ -550,71 +739,105 @@ export default function DonatePage() {
               </label>
             </div>
 
-            {/* PAYMENT */}
+            {/* =================================================
+                PAYMENT
+            ================================================= */}
 
             <div className="donation-step">
               <div className="donation-step-heading">
                 <span>04</span>
 
                 <div>
-                  <span className="kicker">PAYMENT</span>
+                  <span className="kicker">
+                    PAYMENT
+                  </span>
 
-                  <h3>Choose your preferred payment method.</h3>
+                  <h3>
+                    Choose your preferred payment method.
+                  </h3>
                 </div>
               </div>
 
               <div className="payment-options">
-                <button type="button" className="payment-option active">
+                {/* PAYSTACK */}
+
+                <button
+                  type="button"
+                  className="payment-option active"
+                >
                   <CreditCard size={22} />
 
                   <div>
-                    <strong>Pay with Card</strong>
+                    <strong>
+                      Pay with Card
+                    </strong>
 
-                    <span>Secure online payment</span>
+                    <span>
+                      Secure online payment
+                    </span>
                   </div>
 
                   <ArrowRight size={18} />
                 </button>
 
-                <button type="button" className="payment-option">
+                {/* BANK TRANSFER
+                    Informational only for now.
+                */}
+
+                <div className="payment-option">
                   <Landmark size={22} />
 
                   <div>
-                    <strong>Pay with Bank Transfer</strong>
+                    <strong>
+                      Bank Transfer
+                    </strong>
 
-                    <span>Direct NGN bank transfer</span>
+                    <span>
+                      Bank details are provided below for direct NGN donations.
+                    </span>
                   </div>
-
-                  <ArrowRight size={18} />
-                </button>
+                </div>
               </div>
 
               <div className="donation-submit">
                 <div>
-                  <span>Your contribution</span>
+                  <span>
+                    {frequency === "Monthly"
+                      ? "Monthly contribution"
+                      : "Your contribution"}
+                  </span>
 
-                  <strong>₦{formattedAmount}</strong>
+                  <strong>
+                    ₦{formattedAmount}
+                  </strong>
                 </div>
 
                 <button
                   type="button"
                   className="button button-gold"
-                  onClick={handlePaystackPayment}
+                  onClick={
+                    handlePaystackPayment
+                  }
                   disabled={isProcessing}
                 >
                   {isProcessing
                     ? "Opening secure payment..."
+                    : frequency === "Monthly"
+                    ? `Give ₦${formattedAmount} Monthly`
                     : `Donate ₦${formattedAmount}`}
 
                   <ArrowRight size={18} />
                 </button>
-
               </div>
-                {paymentError && (
-                  <p className="payment-error" role="alert">
-                    {paymentError}
-                  </p>
-                )}
+
+              {paymentError && (
+                <p
+                  className="payment-error"
+                  role="alert"
+                >
+                  {paymentError}
+                </p>
+              )}
             </div>
           </div>
         </div>
@@ -627,7 +850,9 @@ export default function DonatePage() {
       <section className="bank-transfer-section">
         <div className="container bank-transfer-grid">
           <div>
-            <span className="kicker">DIRECT BANK TRANSFER</span>
+            <span className="kicker">
+              DIRECT BANK TRANSFER
+            </span>
 
             <h2>
               Prefer to give
@@ -654,35 +879,51 @@ export default function DonatePage() {
             <div className="bank-card-top">
               <Landmark size={22} />
 
-              <span>HORIZON HUMANITY CARE</span>
+              <span>
+                HORIZON HUMANITY CARE
+              </span>
             </div>
 
             <div className="bank-detail">
               <span>Account Name</span>
 
-              <strong>Horizon Humanity Care</strong>
+              <strong>
+                Horizon Humanity Care
+              </strong>
             </div>
 
             <div className="bank-detail">
               <span>Nigeria / NGN</span>
 
-              <strong>Providus Bank</strong>
+              <strong>
+                Providus Bank
+              </strong>
 
-              <span className="account-number">1310328477</span>
+              <span className="account-number">
+                1310328477
+              </span>
             </div>
 
             <div className="bank-detail">
-              <span>International / USD</span>
+              <span>
+                International / USD
+              </span>
 
-              <strong>Providus Bank</strong>
+              <strong>
+                Providus Bank
+              </strong>
 
-              <span className="account-number">1310330423</span>
+              <span className="account-number">
+                1310330423
+              </span>
             </div>
 
             <div className="bank-detail">
               <span>SWIFT Code</span>
 
-              <strong>UMPLNGLA</strong>
+              <strong>
+                UMPLNGLA
+              </strong>
             </div>
 
             <div className="bank-reference">
@@ -709,12 +950,16 @@ export default function DonatePage() {
               <HeartHandshake size={30} />
             </div>
 
-            <span className="kicker">YOUR GIFT CREATES POSSIBILITY</span>
+            <span className="kicker">
+              YOUR GIFT CREATES POSSIBILITY
+            </span>
 
             <h2>
               Every contribution helps extend
               <br />
-              <em>practical support to someone who served.</em>
+              <em>
+                practical support to someone who served.
+              </em>
             </h2>
 
             <p>
@@ -736,7 +981,9 @@ export default function DonatePage() {
       <section className="adopt-family-section">
         <div className="container adopt-family-grid">
           <div>
-            <span className="kicker light-kicker">A SPECIAL WAY TO GIVE</span>
+            <span className="kicker light-kicker">
+              A SPECIAL WAY TO GIVE
+            </span>
 
             <h2>
               Want to make a
@@ -754,9 +1001,13 @@ export default function DonatePage() {
           <div className="adopt-family-card">
             <Users size={28} />
 
-            <span>ADOPT A VULNERABLE RETIREE FAMILY</span>
+            <span>
+              ADOPT A VULNERABLE RETIREE FAMILY
+            </span>
 
-            <strong>₦3,000,000</strong>
+            <strong>
+              ₦3,000,000
+            </strong>
 
             <p>
               A major contribution toward full RSPEI support, providing a
@@ -764,7 +1015,10 @@ export default function DonatePage() {
               assessed needs.
             </p>
 
-            <a href="#contact" className="button button-gold">
+            <a
+              href="#contact"
+              className="button button-gold"
+            >
               Adopt a Family
               <ArrowRight size={18} />
             </a>
@@ -776,11 +1030,16 @@ export default function DonatePage() {
           CONTACT
       ===================================================== */}
 
-      <section className="donate-contact section" id="contact">
+      <section
+        className="donate-contact section"
+        id="contact"
+      >
         <div className="container">
           <div className="donate-contact-card">
             <div>
-              <span className="kicker">MAJOR GIFTS & PARTNERSHIPS</span>
+              <span className="kicker">
+                MAJOR GIFTS & PARTNERSHIPS
+              </span>
 
               <h2>
                 Want to do
@@ -799,11 +1058,18 @@ export default function DonatePage() {
                 hhc.humanitycare@gmail.com
               </a>
 
-              <a href="tel:+2349165794936">+234 916 579 4936</a>
+              <a href="tel:+2349165794936">
+                +234 916 579 4936
+              </a>
 
-              <a href="tel:+2349033169558">+234 903 316 9558</a>
+              <a href="tel:+2349033169558">
+                +234 903 316 9558
+              </a>
 
-              <Link href="/partnerships" className="text-link">
+              <Link
+                href="/partnerships"
+                className="text-link"
+              >
                 Explore Partnership Opportunities
                 <ArrowRight size={16} />
               </Link>
